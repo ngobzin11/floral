@@ -1,0 +1,33 @@
+#Libraries.pkoding.Math
+
+// Binary Search:
+//	Implements non-recursive binary search
+//	Input: An array A, sorted in ascending order 
+//		and a search key K
+//	Output: An index of the array's element that 
+// 		is equal to K or -1 if there is no 
+//		such element
+function binary_search(arr, key) 
+	if arr identical to null then
+		return -1
+	end
+	declare n as length of arr
+	declare l as 0
+	declare r as n minus 1
+
+	while l less than or equal to r do
+		declare pos as (l plus r) over 2
+		declare m as math floor of pos
+		if key equal to element at m from arr then
+			return m
+		
+		else if key less than element at m from arr then
+			set r to m minus 1
+		
+		else
+			set l to m plus 1
+		end
+	end
+
+	return -1
+end

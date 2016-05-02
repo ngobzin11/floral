@@ -1,0 +1,31 @@
+#Libraries.pkoding.Math
+
+// Binomial:
+//	Computes C(n, k) by the dynamic programming algorithm
+//	Input: A pair of non-negative integers n >= k >= 0
+//	Output: The value of C(n, k)
+function binomial(n, k)
+	if n less than 0 or k less than 0 then
+		return 0
+	end
+
+	// Initialize Triangle With Empty Arrays
+	declare C as empty array
+	loop i to n plus 1
+		declare m as math min between i and k plus 1
+		declare C_i as empty array
+		loop j to m
+			if j equal to 0 or j equal to i then
+				insert 1 in C_i
+			else
+				declare C_i1 as element at [ i minus 1 ] from C
+				declare C_i1_j1 as element at [ j minus 1 ] from C_i1
+				declare C_i1_j as element at j from C_i1
+				insert [ C_i1_j1 plus C_i1_j ] in C_i
+			end
+		end
+		insert C_i in C
+	end
+	declare C_n as element at n from C
+	return element at k from C_n
+end

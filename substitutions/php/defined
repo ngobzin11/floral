@@ -1,0 +1,32 @@
+__POWER__						pow(%s, %s)						
+__LOWERCASE__					strtolower(%s)
+__UPPERCASE__					strtoupper(%s)
+__ROUND__						round(%s)
+__SORT__						asort(%s)
+__RAW_INPUT__					readline(%s)
+__SUBSTRING_OF_FROM_TO__		substr(%1$s, %2$s, %3$s - %2$s)
+__SUBSTRING_OF_FROM__			substr(%s, %s)						
+__REMOVE_LAST_FROM__			array_pop(%s)
+__INDEX_OF_IN__					strpos(%2$s, %1$s)
+__FIND_IN__						array_search(%s, %s, true)
+__SPLIT__						explode(" ", %s)
+__SPLIT_BY__					explode(%2$s, %1$s)
+__EMPTY_ARRAY__					array()
+__EMPTY_STRING__				""
+__SIZE_OF__						strlen(%s)
+__LENGTH_OF__					count(%s)
+__INSERT_IN__					array_push(%2$s, %1$s)
+__INSERT_IN_AT__				array_splice(%2$s, %3$s, 0, %1$s)
+__ABSOLUTE_VALUE_OF__			abs(%s)
+__INCREMENT_BY__				%1$s += %2$s
+__INCREMENT__					%1$s++
+__DECREMENT_BY__				%1$s -= %2$s
+__DECREMENT__					%1$s--
+__ELEMENT_AT_FROM__				%2$s[%1$s]
+__CHARACTER_AT_FROM__			substr(%2$s, %1$s, 1)
+__DECLARE_AS__					%s =
+__SET_TO__						%s =
+__PRINT__						print(%s)
+__SHIFT_LEFT_BY__				%s << %s
+__SHIFT_RIGHT_BY__				%s >> %s
+__ARRAY__						array(%s)

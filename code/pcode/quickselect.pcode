@@ -1,0 +1,40 @@
+__FUNCTION__  partition(lst, left, right, pivot_index)
+__DECLARE_AS__(pivot_value)   __ELEMENT_AT_FROM__(pivot_index, lst)
+__SET_TO__(lst)  __ARRAYS_SWAP__(pivot_index, right, lst)
+__DECLARE_AS__(store_index)  left
+__FOR__   __DECLARE_AS__(i)  left; i  __LESS_THAN__  right  __MINUS__  1;  __INCREMENT__(i)   __DO__
+__IF__   __ELEMENT_AT_FROM__(i, lst)   __LESS_THAN__  pivot_value  __THEN__
+__SET_TO__(lst)  __ARRAYS_SWAP__(store_index, i, lst)
+__INCREMENT__(store_index)
+__END__
+__END__
+__SET_TO__(lst)  __ARRAYS_SWAP__(right, store_index, lst)
+__RETURN__  store_index
+__END__
+__FUNCTION__  select(list, left, right, n)
+__IF__  left  __EQUAL_TO__  right  __THEN__
+__RETURN__   __ELEMENT_AT_FROM__(left, lst)
+__END__
+__DECLARE_AS__(temp)  __RANDOM_RANDOM__()   __TIMES__  (right  __MINUS__  left  __PLUS__  1)
+__DECLARE_AS__(pivot_index)  partition(list, left, right, left  __PLUS__  __MATH_FLOOR_OF__(temp) )
+__IF__  n  __EQUAL_TO__  pivot_index  __THEN__
+__RETURN__   __ELEMENT_AT_FROM__(n, lst)
+__ELSE_IF__  n  __LESS_THAN__  pivot_index  __THEN__
+__RETURN__  select(lst, left, pivot_index  __MINUS__  1, n)
+__ELSE__
+__RETURN__  select(lst, left, pivot_index  __PLUS__  1, n)
+__END__
+__END__
+__FUNCTION__  __ARRAYS_SWAP__(arr, x, y)
+__IF__  arr  __IDENTICAL_TO__   __NULL__   __THEN__
+__RETURN__  arr
+__END__
+__DECLARE_AS__(n)   __LENGTH_OF__(arr)
+__IF__  x  __GREATER_THAN_OR_EQUAL_TO__  n  __OR__  y  __GREATER_THAN_OR_EQUAL_TO__  n  __THEN__
+__RETURN__  arr
+__END__
+__DECLARE_AS__(elem)   __ELEMENT_AT_FROM__(x, arr)
+__SET_TO__(__ELEMENT_AT_FROM__(x, arr))   __ELEMENT_AT_FROM__(y, arr)
+__SET_TO__(__ELEMENT_AT_FROM__(y, arr))  elem
+__RETURN__  arr
+__END__

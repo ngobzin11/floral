@@ -1,0 +1,30 @@
+__FUNCTION__  jump_search(L, n, s)
+__DECLARE_AS__(a)  0
+__DECLARE_AS__(sq)  __MATH_SQUARE_ROOT__(n)
+__DECLARE_AS__(b)  __MATH_FLOOR_OF__(sq)
+__DECLARE_AS__(pos)  __MATH_MIN_BETWEEN__(b, n)   __MINUS__  1
+__WHILE__   __ELEMENT_AT_FROM__(pos, L)   __LESS_THAN__  s  __DO__
+__SET_TO__(a)  b
+__DECLARE_AS__(sq)  __MATH_SQUARE_ROOT__(n)
+__SET_TO__(b)  b  __PLUS__  __MATH_FLOOR_OF__(sq)
+__IF__  a  __GREATER_THAN_OR_EQUAL_TO__  n  __THEN__
+__RETURN__  -1
+__END__
+__END__
+__WHILE__   __ELEMENT_AT_FROM__(a, L)   __LESS_THAN__  s  __DO__
+__INCREMENT__(a)
+__IF__  a  __EQUAL_TO__  __MATH_MIN_BETWEEN__(b, n)   __THEN__
+__RETURN__  -1
+__END__
+__END__
+__IF__   __ELEMENT_AT_FROM__(a, L)   __NOT_EQUAL_TO__  s  __THEN__
+__RETURN__  -1
+__END__
+__RETURN__  a
+__END__
+__FUNCTION__  __MATH_MIN_BETWEEN__(x, y)
+__IF__  x  __LESS_THAN__  y  __THEN__
+__RETURN__  x
+__END__
+__RETURN__  y
+__END__

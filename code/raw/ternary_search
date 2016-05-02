@@ -1,0 +1,44 @@
+#Libraries.pkoding.Math
+
+// Ternary Search - http://en.wikipedia.org/wiki/Ternary_search
+//
+//		Finds the minimum or maximum of an increasing or decreasing function
+// Sequential Version
+function ternary_search_seq(func, left, right, absolute_precision)
+	// Find maximum of unimodal function f() within [left, right]
+	// To find the minimum, revert the if/else statement or revert the comparison
+	while true do
+		declare lr as left minus right
+		declare temp as math absolute value lr
+		if temp less than absolute_precision then
+			return (left plus right) over 2
+		end
+		declare left_third as left plus (right minus left) over 3
+		declare right_third as right minus (right minus left) over 3
+
+		if func(left_third) less than func(right_third) then
+			set left to left_third
+		else
+			set right to right_third
+		end
+	end
+end
+
+// Recursive Version
+function ternary_search_rec(func, left, right, absolute_precision)
+	// Left and right are the current bounds; the maximum is between them
+	declare lr as left minus right
+	declare absol as math absolute value lr
+
+	if absol less than absolute_precision then
+		return (left plus right) over 2
+	end
+	declare left_third as (2 times left plus right) over 3
+	declare right_third as (left plus 2 times right) over 3
+
+	if func(left_third) less than func(right_third) then
+		return ternary_search_rec(func, left_third, right, absolute_precision)
+	end
+
+	return ternary_search_rec(func, left, right_third, absolute_precision)
+end

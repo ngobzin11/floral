@@ -1,0 +1,12 @@
+#Libraries.pkoding.Math
+
+function max_subarray(A)
+	declare max_ending_here as 0
+	declare max_so_far as 0
+	for x in A do
+		declare a as max_ending_here plus x
+		set max_ending_here to math max between 0 and a
+		set max_so_far to math max between max_so_far and max_ending_here
+	end
+	return max_so_far
+end

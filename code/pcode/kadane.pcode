@@ -1,0 +1,15 @@
+__FUNCTION__ max_subarray(A)
+__DECLARE_AS__(max_ending_here) 0
+__DECLARE_AS__(max_so_far) 0
+__FOR__ x __IN__ A __DO__
+__SET_TO__(max_ending_here) __MATH_MAX_BETWEEN__(0, (max_ending_here __PLUS__ x) )
+__SET_TO__(max_so_far) __MATH_MAX_BETWEEN__(max_so_far, max_ending_here)
+__END__
+__RETURN__ max_so_far
+__END__
+__FUNCTION__ __MATH_MAX_BETWEEN__(x, y)
+__IF__ x __GREATER_THAN__ y __THEN__
+__RETURN__ x
+__END__
+__RETURN__ y
+__END__

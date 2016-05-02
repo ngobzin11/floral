@@ -1,0 +1,24 @@
+__FUNCTION__  interpolation_search(sorted_array, elem)
+__DECLARE_AS__(low)  0
+__DECLARE_AS__(high)   __LENGTH_OF__(sorted_array)   __MINUS__  1
+__DECLARE_AS__(mid)  -1
+__DECLARE_AS__(low_elem)   __ELEMENT_AT_FROM__(low, sorted_array)
+__DECLARE_AS__(high_elem)   __ELEMENT_AT_FROM__(high, sorted_array)
+__WHILE__  low_elem  __LESS_THAN_OR_EQUAL_TO__  elem  __AND__  high_elem  __GREATER_THAN_OR_EQUAL_TO__  elem  __DO__
+__SET_TO__(mid)  low  __PLUS__  ((elem  __MINUS__  low_elem)  __TIMES__  (high  __MINUS__  low))  __OVER__  (high_elem  __MINUS__  low_elem)
+__DECLARE_AS__(mid_elem)   __ELEMENT_AT_FROM__(mid, sorted_array)
+__IF__  mid_elem  __LESS_THAN__  elem  __THEN__
+__SET_TO__(low)  mid  __PLUS__  1
+__ELSE_IF__  mid_elem  __GREATER_THAN__  elem  __THEN__
+__SET_TO__(high)  mid  __MINUS__  1
+__ELSE__
+__RETURN__  mid
+__END__
+__SET_TO__(low_elem)   __ELEMENT_AT_FROM__(low, sorted_array)
+__SET_TO__(high_elem)   __ELEMENT_AT_FROM__(high, sorted_array)
+__END__
+__IF__   __ELEMENT_AT_FROM__(low, sorted_array)   __NOT_EQUAL_TO__  elem  __THEN__
+__RETURN__  -1
+__END__
+__RETURN__  low
+__END__

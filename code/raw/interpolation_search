@@ -1,0 +1,31 @@
+// Interpolation Search: http://en.wikipedia.org/wiki/Interpolation_search
+function interpolation_search(sorted_array, elem)
+	declare low as 0
+	declare high as length of sorted_array minus 1
+	declare mid as -1
+	declare low_elem as element at low from sorted_array
+	declare high_elem as element at high from sorted_array
+
+	while low_elem less than or equal to elem and high_elem greater than or equal to elem do
+		set mid to low plus ((elem minus low_elem) times (high minus low)) over (high_elem minus low_elem)
+		declare mid_elem as element at mid from sorted_array
+		if mid_elem less than elem then
+			set low to mid plus 1
+
+		else if mid_elem greater than elem then
+			set high to mid minus 1
+
+		else
+			return mid
+		end
+
+		set low_elem to element at low from sorted_array
+		set high_elem to element at high from sorted_array
+	end
+
+	if element at low from sorted_array not equal to elem then
+		return -1
+	end
+
+	return low
+end

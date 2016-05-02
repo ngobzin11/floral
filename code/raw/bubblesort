@@ -1,0 +1,19 @@
+#Libraries.pkoding.Arrays
+
+function bubblesort(A)
+	declare n as length of A
+
+	while n greater than 0 do
+		declare new_n as 0
+		loop i up from 1 to n
+			declare a as element at i minus 1 from A
+			declare b as element at i from A
+			if a greater than b then
+				declare m as i minus 1
+				set A to arrays swap m with i in A
+				set new_n to i
+			end
+		end
+		set n to new_n
+	end
+end

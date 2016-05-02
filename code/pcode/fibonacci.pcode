@@ -1,0 +1,17 @@
+__FUNCTION__  rec_fib(n)
+__IF__  n  __LESS_THAN_OR_EQUAL_TO__  1  __THEN__
+__RETURN__  n
+__END__
+__RETURN__  rec_fib(n  __MINUS__  1)  __PLUS__  rec_fib(n  __MINUS__  2)
+__END__
+__FUNCTION__  iter_fib(n)
+__DECLARE_AS__(F)   __EMPTY_ARRAY__
+__INSERT_IN__(0, F)
+__INSERT_IN__(1, F)
+__FOR__   __DECLARE_AS__(i)  2; i  __LESS_THAN__  n  __PLUS__  1;  __INCREMENT__(i)   __DO__
+__DECLARE_AS__(i_1)   __ELEMENT_AT_FROM__(i - 1, F)
+__DECLARE_AS__(i_2)   __ELEMENT_AT_FROM__(i - 2, F)
+__SET_TO__(__ELEMENT_AT_FROM__(i, F))  i_1  __PLUS__  i_2
+__END__
+__RETURN__   __ELEMENT_AT_FROM__(n, F)
+__END__

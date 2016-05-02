@@ -1,0 +1,18 @@
+__FUNCTION__ binary_search(arr, key)
+__IF__ arr __IDENTICAL_TO__  __NULL__  __THEN__
+__RETURN__ 1
+__END__
+__DECLARE_AS__(l) 0
+__DECLARE_AS__(r) (__LENGTH_OF__(arr) )  __MINUS__ 1
+__WHILE__ l __LESS_THAN_OR_EQUAL_TO__ r__DO__
+__DECLARE_AS__(m) __MATH_FLOOR_OF__(((l __PLUS__ r)  __OVER__ 2) )
+__IF__ key __EQUAL_TO__ __ELEMENT_AT_FROM__(m, arr)  __THEN__
+__RETURN__ m
+__ELSE_IF__key __LESS_THAN__ __ELEMENT_AT_FROM__(m, arr)  __THEN__
+__SET_TO__(r) m __MINUS__ 1
+__ELSE__
+__SET_TO__(l) m __PLUS__ 1
+__END__
+__END__
+__RETURN__ 1
+__END__

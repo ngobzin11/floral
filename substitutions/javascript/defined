@@ -1,0 +1,32 @@
+__POWER__						Math.pow(%s, %s)
+__LOWERCASE__					%s.toLowerCase()
+__UPPERCASE__					%s.toUpperCase()
+__ROUND__						round(%s)
+__SORT__						%s.sort()
+__RAW_INPUT__					prompt(%s)
+__SUBSTRING_OF_FROM_TO__		%s.substring(%s, %s)
+__SUBSTRING_OF_FROM__			%s.substring(%s)
+__REMOVE_LAST_FROM__			%s.pop()
+__INDEX_OF_IN__					%2$s.indexOf(%1$s)
+__FIND_IN__						%2$s.indexOf(%1$s)
+__SPLIT__						%s.split(" ")
+__SPLIT_BY__					%s.split(%s)
+__EMPTY_ARRAY__					new Array()
+__EMPTY_STRING__				""
+__SIZE_OF__						%s.length
+__LENGTH_OF__					%s.length
+__INSERT_IN__					%2$s.push(%1$s)
+__INSERT_IN_AT__				%2s.splice(%3s, 0, %1s) 
+__ABSOLUTE_VALUE_OF__			Math.abs(%s)
+__INCREMENT_BY__				%s += %s
+__INCREMENT__					%s++
+__DECREMENT_BY__				%s -= %s
+__DECREMENT__					%s--
+__ELEMENT_AT_FROM__				%2$s[%1$s]
+__CHARACTER_AT_FROM__			%2$s.charAt(%1$s)
+__DECLARE_AS__					var %s =
+__SET_TO__						%s =
+__PRINT__						console.log(%s)
+__SHIFT_LEFT_BY__				%s << %s
+__SHIFT_RIGHT_BY__				%s >> %s
+__ARRAY__						[%s]

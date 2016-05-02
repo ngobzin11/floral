@@ -1,0 +1,14 @@
+function insertionsort(A)
+	loop i up from 1 to length of A
+		declare x as element at i from A
+		declare j as i
+		declare m as j minus 1
+		
+		while j greater than 0 and element at m from A greater than x do
+			set m to j minus 1
+			set [ element at j from A ] to element at m from A
+			decrement j
+		end
+		set [ element at j from A ] to x
+	end
+end

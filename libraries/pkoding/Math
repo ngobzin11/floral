@@ -1,0 +1,322 @@
+/**
+ * @regex absolute value <of >[number]
+ * @argorder {1}
+ * @tags absolute value of, absolute value, abs
+ * @param [number] <Number> - The number whose absolute value you are trying to find
+ */
+native function math_absolute_value_of(number)
+
+/**
+ * @regex arc cosine <of >[number]
+ * @argorder {1}
+ * @tags arc cosine, arccosine, acos
+ * @param [number] <Number> - The number whose arc cosine you are trying to calculate, in radians
+ */
+native function math_arc_cosine_of(number)
+
+/**
+ * @regex arc sine <of >[number]
+ * @argorder {1}
+ * @tags arc sine, arcsin, arc sin, arcsine
+ * @param [number] <Number> - The number whose arc sine you are trying to calculate, in radians
+ */
+native function math_arc_sine_of(number)
+
+/**
+ * @regex arc tan <of >[number]
+ * @argorder {1}
+ * @tags arc tangent, arctan, arc tan, arctangent
+ * @param [number] <Number> - The number whose arc tangent between -PI/2 and PI/2 you are trying to calculate, in radians
+ */
+native function math_arc_tangent_of(number)
+
+/**
+ * @regex tangent <of >[number]
+ * @argorder {1}
+ * @tags tangent, tan
+ * @param [number] <Number> - The number whose tangent between -PI/2 and PI/2 you are trying to calculate, in radians
+ */
+native function math_tangent_of(number)
+
+/**
+ * @regex sine <of >[number]
+ * @argorder {1}
+ * @tags sine, sin
+ * @param [number] <Number> - The number whose sine you are trying to calculate, in radians
+ */
+native function math_sine_of(number)
+
+/**
+ * @regex cosine <of >[number]
+ * @argorder {1}
+ * @tags cosine, cos
+ * @param [number] <Number> - The number whose cosine you are trying to calculate, in radians
+ */
+native function math_cosine_of(number)
+
+/**
+ * @regex floor <of >[number]
+ * @argorder {1}
+ * @tags floor, round down
+ * @param [float] <Float> - The number whose floor you are trying to calculate
+ */
+native function math_floor_of(number)
+
+/**
+ * @regex ceiling <of >[number]
+ * @argorder {1}
+ * @tags ceil, ceiling, round up
+ * @param [number] <Number> - The number whose ceiling you are trying to calculate
+ */
+native function math_ceil_of(number)
+
+/**
+ * @regex exp [number]
+ * @argorder {1}
+ * @tags exp, exponent, exponent of e
+ * @param [number] <Number> - The number you are raising e to the power of
+ */
+native function math_exp(number)
+
+/**
+ * @regex natural log <of >[number]
+ * @argorder {1}
+ * @tags natural logarithm, natural log, ln
+ * @param [number] <Number> - The number whose natural logarithm you are trying to calculate
+ */
+native function math_natural_log(number)
+
+/**
+ * @regex log base [number] of [number]
+ * @argorder {1, 2}
+ * @tags log, log base n
+ * @param [number] <Number> - Logarithm base
+ * @param [number] <Number> - The number whose logarithm you are trying to calculate
+ */
+function math_log(base, number) 
+	return math natural log of number over math natural log of base
+end
+
+
+/**
+ * @regex max between [number] and [number]
+ * @argorder {1, 2}
+ * @tags max value between, max between, max
+ * @param [number] <Number> - The first number
+ * @param [number] <Number> - The second number
+ */
+function math_max_between(x, y) 
+	if x greater than y then
+		return x
+	end
+	return y
+end
+
+
+/**
+ * @regex max from [array]
+ * @argorder {1}
+ * @tags maximum, array max, max value from, max from, max
+ * @param [array] <Array> - The array you are trying to find the maximum value from
+ */
+function math_max_from(num_arr) 
+	if length of num_arr identical to 0 then
+		return null
+	end
+	set m to element at 0 from num_arr
+	for i in num_arr do
+		if i greater than m then
+			m = i
+		end
+	end
+	return m
+end
+
+
+/**
+ * @regex min between [number] and [number]
+ * @argorder {1, 2}
+ * @tags min value between, min between, min
+ * @param [number] <Number> - The first number
+ * @param [number] <Number> - The second number
+ */
+function math_min_between(x, y) 
+	if x less than y then
+		return x
+	end
+	return y
+end
+
+
+/**
+ * @regex min from [array]
+ * @argorder {1}
+ * @tags minimum, array min, min value from, min from, min
+ * @param [array] <Array> - The array you are trying to find the minimum value from
+ */
+function math_min_from(num_arr) 
+	if length of num_arr identical to 0 then
+		return null
+	end
+	set m to element at 0 from num_arr
+	for i in num_arr do
+		if i less than m then
+			set m to i
+		end
+	end
+	return m
+end
+
+
+/**
+ * @regex square root <of >[number]
+ * @argorder {1}
+ * @tags square root, sqrt, second root, root
+ * @param [number] <Number> - The number whose square root you are calculating
+ */
+native function math_square_root(number)
+
+
+/**
+ * @regex range <of >[array]< values>
+ * @argorder {1}
+ * @tags min max, range of, range of values
+ * @param [array] <Array> - The array whose range you are trying to find
+ */
+function math_range(num_arr) 
+	if length of num_arr identical to 0 then
+		return null
+	end
+	set mn to element at 0 from num_arr
+	set mx to element at 0 from num_arr
+	for i in num_arr do
+		if i less than mn then
+			set mn to i
+		else if i greater than mx then
+			set mx to i
+		end
+	end
+	return [mn, mx]
+end
+
+
+/**
+ * @regex median <of >[array]
+ * @argorder {1}
+ * @tags median, middle value
+ * @dependencies pkoding.Arrays
+ * @param [array] <Array> - The array whose median you are finding
+ */
+function math_median(arr) 
+	if arr identical to null then
+		return null
+	end
+	set n to length of arr
+	set k to (n plus 1) over 2
+	
+	for i = 0; i less than k; increment i do
+		set min_index to i
+		set min_value to element at i from arr
+		for j = i plus 1; j less than n; increment j do
+			if element at j from arr less than min_value then
+				set min_index to j
+				set min_value to element at j from arr
+			end
+		end
+		set arr_i to element at i from arr
+		set arr_mi to element at min_index from arr
+		set arr to arrays swap arr_i with arr_mi in arr
+	end
+	return element at k from arr
+end
+
+
+/**
+ * @regex standard deviation <of >[array]
+ * @argorder {1}
+ * @tags std dev, standard deviation
+ * @param [array] <Array> - The array whose standard deviation is being calculated
+ */
+function math_std_dev(arr) 
+	if arr identical to null OR length of arr equal to 0 then
+		return 0.0
+	end
+	set sq_sum to 0
+	set sum to 0
+	set n to 0
+	for elem in arr do
+		increment sq_sum by [ elem to the power 2 ]
+		increment sum by elem
+		increment n
+	end
+	set mean to sum over n
+	return math square root of [ sq_sum over n minus mean times mean ]
+end
+
+
+/**
+ * @regex mode <of >[array]
+ * @argorder {1}
+ * @tags mode, most common, highest occurrence
+ * @param [array] <Array> - Array whose moce is being calculated
+ */
+function math_mode(arr) 
+	if arr identical to null then
+		return null
+	end
+	set n to length of arr
+	set tally to empty array
+	for i = 0; i less than n; increment i do
+		insert 0 in tally
+	end
+	
+	for pos in arr do
+		set [ element at pos from tally ] to element at pos from tally plus 1
+	end
+	
+	set max_index to 0
+	set prev to element at max_index from tally
+	for i = 1; i less than n; increment i do
+		set cur to element at i from tally
+		if cur greater than prev then
+			set max_index to i
+			set prev to element at max_index from tally
+		end
+	end
+	return max_index
+end
+
+
+/**
+ * @regex mean <of >[array]
+ * @argorder {1}
+ * @tags mean, array mean, average, array average
+ * @param [array] <Array> - Array whose mean is being calculated
+ */
+function math_mean(arr) 
+	if arr identical to null then
+		return null
+	end
+	set n to 0
+	set sum to 0
+	for elem in arr do
+		increment sum by elem
+		increment n 
+	end
+	if n greater than 0 then
+		return sum over n
+	end
+	return null
+end
+
+
+/**
+ * @regex [number]-th root <of >[number]
+ * @argorder {2, 1}
+ * @tags root, n-th root, nth root
+ * @param [number] <Number> - The root
+ * @param [number] <Number> - The number whose root you are calculating
+ */
+function math_root(number, rt) 
+	return number power [1 over rt]
+end

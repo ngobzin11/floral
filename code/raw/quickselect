@@ -1,0 +1,48 @@
+// QuickSelect: http://en.wikipedia.org/wiki/Quickselect
+
+#Libraries.pkoding.Random
+#Libraries.pkoding.Arrays
+#Libraries.pkoding.Math
+
+// Partition: 
+//
+//		Group a list ranging from indices left to right into two parts, 
+//		those that are less than a certain element, and those that are greater
+//		than or equal to a certain element
+function partition(lst, left, right, pivot_index)
+	declare pivot_value as element at pivot_index from lst
+	set lst to arrays swap pivot_index with right in lst
+	declare store_index as left
+
+	loop i up from left to right minus 1
+		if element at i from lst less than pivot_value then
+			set lst to arrays swap store_index with i in lst
+			increment store_index
+		end
+	end
+	set lst to arrays swap right with store_index in lst
+	return store_index
+end
+
+// Select:
+//
+//		Returns the n-th smallest element of list within left..right inclusive (i.e. left <= n <= right).
+//		The size of the list is not changing with each recursion. Thus, n does not need to be
+//		updated with each round.
+function select(list, left, right, n)
+	// If the list contains one element: return it
+	if left equal to right then
+		return element at left from lst
+	end
+
+	// Select a pivot index between left and right
+	declare temp as random unit interval times (right minus left plus 1)
+	declare pivot_index as partition(list, left, right, left plus math floor temp)
+	if n equal to pivot_index then
+		return element at n from lst
+	else if n less than pivot_index then
+		return select(lst, left, pivot_index minus 1, n)
+	else
+		return select(lst, left, pivot_index plus 1, n)
+	end
+end

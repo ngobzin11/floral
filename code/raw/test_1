@@ -1,0 +1,13 @@
+// Some stupid shit here
+__FUNCTION__ dummyFunc()
+	__DECLARE_AS__(m) negative 1
+	declare elem as element at 2, 3, 4 from arr
+	__IF__ some_condition __THEN__
+		__DECLARE_AS__(n) 0
+
+	__ELSE__
+		__DECLARE_AS__(n) 1
+	__END__
+	// Use <m> somewhere here
+	__SET_TO__(m) 25
+__END__

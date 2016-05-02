@@ -1,0 +1,32 @@
+#Libraries.pkoding.Arrays
+
+function oddevensort(A)
+	declare n as length of A
+	declare sorted as false
+	while not sorted do
+		set sorted to true
+		loop i up from 1 to n minus 1 by 2
+			declare m as i plus 1
+			declare a as element at i from A
+			declare b as element at m from A
+			if a less than b then
+				set A to arrays swap m with i in A
+				if sorted then
+					set sorted to false
+				end
+			end
+		end
+
+		loop i up from 0 to n minus 1 by 2
+			declare m as i plus 1
+			declare a as element at i from A
+			declare b as element at m from A
+			if a greater than b then
+				set A to arrays swap m with i in A
+				if sorted then
+					set sorted to false
+				end
+			end
+		end
+	end
+end

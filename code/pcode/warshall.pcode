@@ -1,0 +1,39 @@
+__FUNCTION__  warshall(A)
+__DECLARE_AS__(n)   __LENGTH_OF__(A)
+__DECLARE_AS__(prevR)  __ARRAYS_COPY__(A)
+__DECLARE_AS__(R)   __EMPTY_ARRAY__
+__FOR__   __DECLARE_AS__(i)  0; i  __LESS_THAN__  n;  __INCREMENT__(i)   __DO__
+__SET_TO__(R_i)   __EMPTY_ARRAY__
+__FOR__   __DECLARE_AS__(j)  0; j  __LESS_THAN__  n;  __INCREMENT__(j)   __DO__
+__INSERT_IN__(0, R_i)
+__END__
+__INSERT_IN__(R_i, R)
+__END__
+__FOR__   __DECLARE_AS__(k)  0; k  __LESS_THAN__  n;  __INCREMENT__(k)   __DO__
+__DECLARE_AS__(prev_k)   __ELEMENT_AT_FROM__(k, prevR)
+__FOR__   __DECLARE_AS__(i)  0; i  __LESS_THAN__  n;  __INCREMENT__(i)   __DO__
+__DECLARE_AS__(prev_i)   __ELEMENT_AT_FROM__(i, prevR)
+__DECLARE_AS__(prev_ik)   __ELEMENT_AT_FROM__(k, prev_i)
+__DECLARE_AS__(cur_i)   __ELEMENT_AT_FROM__(i, R)
+__FOR__   __DECLARE_AS__(j)  0; j  __LESS_THAN__  n;  __INCREMENT__(j)   __DO__
+__DECLARE_AS__(prev_ij)   __ELEMENT_AT_FROM__(j, prev_i)
+__DECLARE_AS__(prev_kj)   __ELEMENT_AT_FROM__(j, prev_k)
+__IF__  prev_ij  __EQUAL_TO__  1  __THEN__
+__SET_TO__(__ELEMENT_AT_FROM__(j, cur_i))  1
+__ELSE_IF__  prev_ik  __EQUAL_TO__  1  __AND__  prev_kj  __EQUAL_TO__  1  __THEN__
+__SET_TO__(__ELEMENT_AT_FROM__(j, cur_i))  1
+__END__
+__END__
+__SET_TO__(__ELEMENT_AT_FROM__(i, R))  cur_i
+__END__
+__SET_TO__(prevR)  __ARRAYS_COPY__(R)
+__END__
+__RETURN__  R
+__END__
+__FUNCTION__  __ARRAYS_COPY__(A)
+__SET_TO__(res)   __EMPTY_ARRAY__
+__FOR__  a_i  __IN__  A  __DO__
+__INSERT_IN__(a_i, res)
+__END__
+__RETURN__  res
+__END__

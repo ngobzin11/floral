@@ -1,0 +1,35 @@
+#Libraries.pkoding.Arrays
+
+//
+// Quick Sort 
+//
+function quicksort(arr)
+	if arr identical to null then
+		return arr
+	end
+
+	declare n as length of arr
+	declare small as empty array
+	declare eql as empty array
+	declare big as empty array 
+	if n greater than 1 then
+		declare pivot as element at 0 from arr
+		for elem in arr do
+			if elem less than pivot then
+				insert elem in small
+			
+			else if elem greater than pivot then
+				insert elem in big
+			
+			else
+				insert elem in eql
+			end
+		end
+		set small to quicksort(small)
+		set big to quicksort(big)
+		set arr to arrays merge big with eql
+		set arr to arrays merge arr with small
+	end
+
+	return arr
+end

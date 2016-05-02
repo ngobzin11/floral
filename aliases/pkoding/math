@@ -1,0 +1,7 @@
+@alias	gt			<==>		greater than
+@alias	lt			<==>		less than
+@alias	leq			<==>		less than or equal to
+@alias	geq			<==>		greater than or equal to
+@alias	eq			<==>		equal to
+@alias	idt			<==>		identical to
+@alias	nidt		<==>		not identical to

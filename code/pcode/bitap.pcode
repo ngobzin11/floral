@@ -1,0 +1,20 @@
+__FUNCTION__ bitap_search(haystack, needle)
+__DECLARE_AS__(m) __LENGTH_OF__(needle)
+__IF__ m __EQUAL_TO__ 0 __THEN__
+__RETURN__ haystack
+__END__
+__DECLARE_AS__(R)  __EMPTY_ARRAY__
+__INSERT_IN__(1, R)
+__FOR__ __DECLARE_AS__(i) 1; i __LESS_THAN__ m __PLUS__ 1; __INCREMENT__(i) __DO__
+__INSERT_IN__(0, R)
+__END__
+__FOR__ __DECLARE_AS__(i) 0; i __LESS_THAN__ __LENGTH_OF__(haystack) ; __INCREMENT__(i) __DO__
+__FOR__ __DECLARE_AS__(k) m; k __GREATER_THAN_OR_EQUAL_TO__ 1; __DECREMENT__(k) __DO__
+__SET_TO__(__ELEMENT_AT_FROM__(k, R) ) (__ELEMENT_AT_FROM__(k __MINUS__ 1, R) ) __BITWISE_AND__((__ELEMENT_AT_FROM__(i, haystack) )  __EQUAL_TO__ (__ELEMENT_AT_FROM__(k __MINUS__ 1, needle) ) )
+__END__
+__IF__ __ELEMENT_AT_FROM__(m, R)  __EQUAL_TO__ 1 __THEN__
+__RETURN__
+__END__
+__END__
+__RETURN__ 1
+__END__

@@ -1,0 +1,32 @@
+__POWER__						pow(%s, %s)						
+__LOWERCASE__					%s.lower()
+__UPPERCASE__					%s.upper()
+__ROUND__						round(%s)
+__SORT__						%s.sort()
+__RAW_INPUT__					raw_input(%s)
+__SUBSTRING_OF_FROM_TO__		%s[%s:%s]
+__SUBSTRING_OF_FROM__			%s[%s:]
+__REMOVE_LAST_FROM__			%s.pop()
+__INDEX_OF_IN__					%2$s.index(%1$s)
+__FIND_IN__						%2$s.find(%1$s)
+__SPLIT__						%s.split()
+__SPLIT_BY__					%s.split(%s)
+__EMPTY_ARRAY__					[]
+__EMPTY_STRING__				""
+__SIZE_OF__						len(%s)
+__LENGTH_OF__					len(%s)
+__INSERT_IN__					%2$s.append(%1$s)
+__INSERT_IN_AT__				%2$s.insert(%3$s, %1$s)
+__ABSOLUTE_VALUE_OF__			abs(%s)
+__INCREMENT_BY__				%1$s = %1$s + %2$s
+__INCREMENT__					%1$s = %1$s + 1
+__DECREMENT_BY__				%1$s = %1$s - %2$s
+__DECREMENT__					%1$s = %1$s - 1
+__ELEMENT_AT_FROM__				%2$s[%1$s]
+__CHARACTER_AT_FROM__			%2$s[%1$s]
+__DECLARE_AS__					%s =
+__SET_TO__						%s =
+__PRINT__						print(%s)
+__SHIFT_LEFT_BY__				%s << %s
+__SHIFT_RIGHT_BY__				%s >> %s
+__ARRAY__						[%s]

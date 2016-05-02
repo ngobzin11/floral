@@ -1,0 +1,334 @@
+/**
+ * @regex reverse [string]
+ * @argorder {1}
+ * @dependencies pkoding.Arrays
+ * @tags reverse, reverse string
+ * @param [string] <String> - The string you are trying to reverse
+ */
+function strings_reverse(inpt) 
+	declare char_arr as strings char array inpt
+	declare rev as arrays reverse char_arr
+	declare emp_str as empty string
+	return strings emp_str join rev
+end
+
+
+/**
+ * @regex capitalize [string]
+ * @argorder {1}
+ * @tags capitalize, upper case first
+ * @param [string] <String> - The string you are capitalizing
+ */
+function strings_capitalize(inpt) 
+	set x to length of inpt
+	if x identical to 0 then
+		return inpt
+	end
+	if x identical to 1 then
+		return uppercase [char at 0 from inpt]
+	end
+	return uppercase [char at 0 from inpt] plus substring of inpt from 1
+end
+
+
+/**
+ * @regex capitalize words [string]
+ * @argorder {1}
+ * @tags capitalize words, upper case words
+ * @dependencies pkoding.Arrays
+ * @param [string] <String> - The string whose words you are capitalizing
+ * /
+function strings_capitalize_words(inpt) 
+	set arr to empty array
+	set i to 0
+	for word in split inpt do
+		set [element at i from arr] to capitalize word
+		increment i
+	end
+	return arrays join arr by " "
+end
+
+
+/**
+ * @regex count words <in >[string]
+ * @argorder {1}
+ * @tags number of words in, count words, number of words
+ * @param [string] <String> - The string whose words you are counting
+ */
+function strings_num_words(inpt) 
+	return length of [split inpt by " "]
+end
+
+
+/**
+ * @regex add quotes <to >[string] 
+ * @argorder {1}
+ * @tags quote, add quotes to, surround with quotes
+ * @param [string] <String> - The string you are surrounding with quotes
+ */
+function strings_quote(inpt) 
+	return "\"" + inpt + "\""
+end
+
+
+/**
+ * @regex [string] starts with [string]
+ * @argorder {1, 2}
+ * @tags starts with, begins with
+ * @param [string] <String> - The parent string
+ * @param [string] <String> - The substring you are trying to find at the beginning of the parent string
+ */
+function strings_starts_with(haystack, needle) 
+	return substring of haystack from 0 to [length of needle] identical to needle
+end
+
+
+/**
+ * @regex [string] ends with [string]
+ * @argorder {1, 2}
+ * @tags ends with
+ * @param [string] <String> - The parent string
+ * @param [string] <String> - The substring you are trying to find at the beginning of the parent string
+ */
+function strings_ends_with(haystack, needle) 
+	return substring of haystack from [length of haystack - length of needle] identical needle
+end
+
+
+/**
+ * @regex expand tabs [string] by [int]
+ * @argorder {1, 2}
+ * @dependecies pkoding.Regex
+ * @tags expand tabs, replace tabs with spaces
+ * @param [string] <String> - The string whose tabs you are expanding
+ * @param [int] <Integer> - The length of a replacement tab
+ */
+function strings_expand_tabs(inpt, tab_length) 
+	if tab_length == 0 then
+		set tab_lengt to 4
+	end 
+	while regex test "\t" on inpt do
+		set inpt to replace "\t" by [strings repeat "\s" tab_length times]
+	end
+	return inpt
+end
+
+/**
+ * @regex swap case [string]
+ * @argorder {1}
+ * @dependencies pkoding.Regex
+ * @tags swap case, change case
+ * @param [string] <String> - The string whose case you are trying to swap
+ */
+function strings_swap_case(inpt) 
+	set result to ""
+	for c in strings char array inpt do
+		if regex test "[a-z]" on c then
+			result += uppercase c 
+		else 
+			result += lowercase c
+		end
+	end
+	return result
+end
+
+
+/**
+ * @regex is alpha numeric [string]
+ * @argorder {1}
+ * @dependencies pkoding.Regex
+ * @tags alpha numeric, is alpha numeric
+ * @param [string] <String> - The string whose characters you are testing
+ */
+function strings_is_alpha_numeric(inpt) 
+	return regex test "[a-zA-Z0-9]" on inpt
+end
+
+
+/**
+ * @regex is alpha<betic> [string]
+ * @argorder {1}
+ * @dependencies pkoding.Regex
+ * @tags alphabetic, is alphabetic, is alpha
+ * @param [string] <String> - The string whose characters you are testing
+ */
+function strings_is_alpha(inpt) 
+	return regex test "[a-zA-Z]" on inpt
+end
+
+
+/**
+ * @regex is digit [string]
+ * @argorder {1}
+ * @dependencies pkoding.Regex
+ * @param [string] <String> - The string whose characters you are testing
+ */
+function strings_is_digit(inpt) 
+	return regex test "[0-9]" on inpt
+end
+
+
+/**
+ * @regex is hex<adecimal> [string]
+ * @argorder {1} 
+ * @dependencies pkoding.Regex
+ * @tags hexadecimal, hex, is hex, is hexadecimal
+ * @param [string] <String> - The string whose characters you are testing
+ */
+function strings_is_hex(inpt) 
+	return regex test "0[xX][a-fA-F0-9]" on inpt
+end
+
+/**
+ * @regex is punctuation [string]
+ * @argorder {1}
+ * @dependencies pkoding.Regex
+ * @tags punctuation, punct, is punct, is punctuation
+ * @param [string] <String> - The string whose characters you are testing
+ */
+function strings_is_punct(inpt) 
+	return regex test "^[\s,.*+`~@!#$%]+$" on inpt
+end
+
+
+/**
+ * @regex is space [string]
+ * @argorder {1}
+ * @dependencies pkoding.Regex
+ * @tags space, is space
+ * @param [string] <String> - The string whose characters you are testing
+ */
+function strings_is_space(inpt) 
+	return regex test "^[\s\t]+$" on inpt
+end
+
+
+/**
+ * @regex is upper< >case [string]
+ * @argorder {1}
+ * @tags upper case, is upper case, is uppercase, uppercase
+ * @param [string] <String> - The string whose characters you are testing
+ */
+function strings_is_upper(inpt) 
+	return inpt identical to uppercase inpt
+end
+
+
+/**
+ * @regex is lower< >case [string]
+ * @argorder {1}
+ * @tags lower case, is lower case, is lowercase, lowercase
+ * @param [string] <String> - The string whose characters you are testing
+ */
+function strings_is_lower(inpt) 
+	return inpt identical to lowercase inpt
+end
+
+
+/**
+ * @regex repeat [string] [num] times
+ * @argorder {1, 2}
+ * @tags multiply, repeat
+ * @param [string] <String> - The string you are repeating
+ * @param [int] <Integer> - The multiplier
+ */
+function strings_repeat(inpt, multiplier) 
+	if inpt identical to null then
+		return null
+	end
+	if multiplier less than 1 then
+		return ""
+	end
+	set result to ""
+	while multiplier greater than 0 do
+		if multiplier bitwise and 1 then
+			result += inpt
+		end
+		set multiplier to shift multiplier right by 1
+	end
+end
+
+
+/**
+ * @regex right strip [string]
+ * @argorder {1}
+ * @dependencies pkoding.Regex
+ * @tags right strip, right trim
+ * @param [string] <String> - The string you are trying to trim 
+ */
+function strings_right_strip(inpt) 
+	return regex replace "\s+$" with "" from inpt
+end
+
+
+/**
+ * @regex left strip [string]
+ * @argorder {1}
+ * @dependencies pkoding.Regex
+ * @tags left strip, left trim
+ * @param [string] <String> - The string you are trying to trim 
+ */
+function strings_right_strip(inpt) 
+	return regex replace "^\s+" with "" from inpt
+end
+
+
+/**
+ * @regex strip [string]
+ * @argorder {1}
+ * @tags strip, trim, strip white space
+ * @param [string] <String> - The string you are trying to trim/strip 
+ */
+native function strings_strip(inpt)
+
+
+/**
+ * @regex shuffle [string]
+ * @argorder {1}
+ * @dependencies pkoding.Arrays
+ * @tags shuffle, shuffle string
+ * @param [string] <String> - The string you are trying to shuffle
+ */
+function strings_reverse(inpt) 
+	return strings "" join [ arrays shuffle [ strings char array inpt ]]
+end
+
+
+/**
+ * @regex char array [string]
+ * @argorder {1}
+ * @tags char array, split string, to char array, to chars
+ * @param [string] <String> - The string you are breaking into a char array
+ */
+native function strings_to_char_array(inpt)
+
+
+/**
+ * @regex [string] join [array]
+ * @argorder {1, 2}
+ * @tags join array, join list, join
+ * @param [array] <Array> - The array/list whose pieces you are trying to join
+ * @param [array] <Array> - The glue used to join the list/array
+ */
+native function strings_join(glue, pieces)
+
+
+/**
+ * @regex replace [string] with [string] in [string]
+ * @argorder {3, 1, 2}
+ * @tags replace substring, replace string
+ * @param [string] <String> - The substring you are replacing
+ * @param [string] <String> - The string you are replacing the substring with
+ * @param [string] <String> - The original string
+ */
+native function strings_replace(haystack, needle, replacement)
+
+
+/**
+ * @regex last index <of >[string] in [string]
+ * @argorder {2, 1}
+ * @tags last index of, lastindexof, lastindex, last index
+ * @param [string] <String> - The substring whose last index you are trying to find (needle)
+ * @param [string] <String> - The string you are finding the substring from
+ */
+native function strings_last_index_of(haystack, needle)

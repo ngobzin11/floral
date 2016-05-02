@@ -1,0 +1,38 @@
+__FUNCTION__ rebalance(A, start, stop)
+__DECLARE_AS__(r) stop
+__DECLARE_AS__(w) stop __TIMES__ 2
+__WHILE__ r __GREATER_THAN_OR_EQUAL_TO__ start __DO__
+__DECLARE_AS__(m) w __PLUS__ 1
+__SET_TO__(__ELEMENT_AT_FROM__(m, A) ) gap
+__SET_TO__(__ELEMENT_AT_FROM__(w, A) ) __ELEMENT_AT_FROM__(r, A)
+__DECREMENT__(r)
+__DECREMENT_BY__(w, 2)
+__END__
+__END__
+__FUNCTION__ sort(A)
+__DECLARE_AS__(S)  __EMPTY_ARRAY__
+__FOR__ __DECLARE_AS__(i) 1; i __LESS_THAN__ (__MATH_FLOOR_OF__((__MATH_LOG__(2, (__LENGTH_OF__(A) ) )  __PLUS__ 1) ) ) ; __INCREMENT__(i)  __DO__
+__FOR__ __DECLARE_AS__(j) (__POWER__(2, i) ) ; j __LESS_THAN__ (__POWER__(2, (i __PLUS__ 1) ) ) ; __INCREMENT__(j)  __DO__
+__DECLARE_AS__(ins) binarysearch(S, __POWER__(2, (i __MINUS__ 1) ) )
+__SET_TO__(__ELEMENT_AT_FROM__(ins, S) ) __ELEMENT_AT_FROM__(j, A)
+__END__
+__END__
+__END__
+__FUNCTION__ binarysearch(arr, key)
+__IF__ arr __IDENTICAL_TO__  __NULL__  __THEN__
+__RETURN__ 1
+__END__
+__DECLARE_AS__(l) 0
+__DECLARE_AS__(r) (__LENGTH_OF__(arr) )  __MINUS__ 1
+__WHILE__ l __LESS_THAN_OR_EQUAL_TO__ r __DO__
+__DECLARE_AS__(m) __MATH_FLOOR_OF__(((l __PLUS__ r)  __OVER__ 2) )
+__IF__ key __EQUAL_TO__ __ELEMENT_AT_FROM__(m, arr)  __THEN__
+__RETURN__ m
+__ELSE_IF__ key __LESS_THAN__ __ELEMENT_AT_FROM__(m, arr)  __THEN__
+__SET_TO__(r) m __MINUS__ 1
+__ELSE__
+__SET_TO__(l) m __PLUS__ 1
+__END__
+__END__
+__RETURN__ 1
+__END__

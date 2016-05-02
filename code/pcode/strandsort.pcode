@@ -1,0 +1,52 @@
+__FUNCTION__ strandsort(A)
+__DECLARE_AS__(items) __LENGTH_OF__(A)
+__DECLARE_AS__(sorted_bins)  __EMPTY_ARRAY__
+__DECLARE_AS__(highest) __ELEMENT_AT_FROM__(0, A)
+__FOR__ __DECLARE_AS__(i) 1; i __LESS_THAN__ __LENGTH_OF__(A) ; __INCREMENT__(i)  __DO__
+__IF__ highest __LESS_THAN__ __ELEMENT_AT_FROM__(i, A)  __THEN__
+__SET_TO__(highest) __ELEMENT_AT_FROM__(i, A)
+__END__
+__END__
+__WHILE__ items __GREATER_THAN__ 0 __DO__
+__DECLARE_AS__(new_bin)  __EMPTY_ARRAY__
+__DECLARE_AS__(i) 0
+__WHILE__ i __LESS_THAN__ items __DO__
+__IF__ __ELEMENT_AT_FROM__(i, A)  __GREATER_THAN_OR_EQUAL_TO__ highest __THEN__
+__SET_TO__(highest) __ARRAYS_REMOVE_AT__(i, A)
+__INSERT_IN__(highest, new_bin)
+__ELSE__
+__INCREMENT__(i)
+__END__
+__END__
+__FOR__ (__ARRAYS_REMOVE_AT__(0, M) )  __IN__ new_bin __DO__
+__INSERT_IN__((__ARRAYS_REMOVE_AT__(0, M) ) , sorted_bins)
+__END__
+__END__
+__DECLARE_AS__(all_sorted)  __EMPTY_ARRAY__
+__WHILE__ __LENGTH_OF__(all_sorted)  __LESS_THAN__ items __DO__
+__DECLARE_AS__(low_bin) 0
+__FOR__ __DECLARE_AS__(j) 0; j __LESS_THAN__ __LENGTH_OF__(sorted_bins) ; __INCREMENT__(j)  __DO__
+__IF__ __ELEMENT_AT_FROM__(0, (__ELEMENT_AT_FROM__(j, sorted_bins) ) )  __LESS_THAN__ __ELEMENT_AT_FROM__(0, (__ELEMENT_AT_FROM__(low_bin, sorted_bins) ) )  __THEN__
+__SET_TO__(low_bin) j
+__END__
+__END__
+__DECLARE_AS__(M) __ELEMENT_AT_FROM__(low_bin, sorted_bins)
+__INSERT_IN__((__ARRAYS_REMOVE_AT__(0, M) ) , all_sorted)
+__IF__ __LENGTH_OF__(M)  __EQUAL_TO__ 0 __THEN__
+__SET_TO__(sorted_bins) ignoreAt(sorted_bins, low_bin)
+__END__
+__END__
+__END__
+__FUNCTION__ ignoreAt(sorted_bins, low_bin)
+__DECLARE_AS__(n) __LENGTH_OF__(sorted_bins)
+__IF__ n __EQUAL_TO__ 0 __THEN__
+__RETURN__ sorted_bins
+__END__
+__DECLARE_AS__(new_arr)  __EMPTY_ARRAY__
+__FOR__ __DECLARE_AS__(i) 0; i __LESS_THAN__ n; __INCREMENT__(i)  __DO__
+__IF__ i __NOT_EQUAL_TO__ low_bin __THEN__
+__INSERT_IN__((__ELEMENT_AT_FROM__(i, soerted_bins) ) , new_arr)
+__END__
+__END__
+__RETURN__ new_arr
+__END__

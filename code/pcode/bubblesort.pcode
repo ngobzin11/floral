@@ -1,0 +1,25 @@
+__FUNCTION__ bubblesort(A)
+__DECLARE_AS__(n) __LENGTH_OF__(A)
+__WHILE__ n __GREATER_THAN__ 0 __DO__
+__DECLARE_AS__(new_n) 0
+__FOR__ __DECLARE_AS__(i) 1; i __LESS_THAN__ n; __INCREMENT__(i)  __DO__
+__IF__ (__ELEMENT_AT_FROM__(i __MINUS__ 1, A) )  __GREATER_THAN__ (__ELEMENT_AT_FROM__(i, A) )  __THEN__
+__SET_TO__(A) __ARRAYS_SWAP__((i __MINUS__ 1) , i, A)
+__SET_TO__(new_n) i
+__END__
+__END__
+__SET_TO__(n) new_n
+__END__
+__END__
+__FUNCTION__ __ARRAYS_SWAP__(x, y, arr)
+__IF__ arr __IDENTICAL_TO__  __NULL__  __THEN__
+__RETURN__ arr
+__END__
+__DECLARE_AS__(n) __LENGTH_OF__(arr)
+__IF__ x __GREATER_THAN_OR_EQUAL_TO__ n __OR__ y __GREATER_THAN_OR_EQUAL_TO__ n __THEN__
+__RETURN__ arr
+__END__
+__SET_TO__(__ELEMENT_AT_FROM__(x, arr) ) __ELEMENT_AT_FROM__(y, arr)
+__SET_TO__(__ELEMENT_AT_FROM__(y, arr) ) (__ELEMENT_AT_FROM__(x, arr) )
+__RETURN__ arr
+__END__

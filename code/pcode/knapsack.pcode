@@ -1,0 +1,37 @@
+__DECLARE_AS__(Weights)   __EMPTY_ARRAY__
+__DECLARE_AS__(Values)   __EMPTY_ARRAY__
+__DECLARE_AS__(V)  init_table(  __LENGTH_OF__(Weights)  )
+__FUNCTION__  knapsack(i, j)
+__DECLARE_AS__(V_i)   __ELEMENT_AT_FROM__(i, V)
+__IF__   __ELEMENT_AT_FROM__(j, V_i)   __LESS_THAN__  0  __THEN__
+__IF__  j  __LESS_THAN__   __ELEMENT_AT_FROM__(i, Weights)   __THEN__
+__DECLARE_AS__(value)  knapsack(i  __MINUS__  1, j)
+__ELSE__
+__DECLARE_AS__(first)  knapsack(i  __MINUS__  1, j)
+__SET_TO__(V_i)   __ELEMENT_AT_FROM__(i, Values)
+__DECLARE_AS__(W_i)   __ELEMENT_AT_FROM__(i, Weights)
+__DECLARE_AS__(second)  V_i  __PLUS__  knapsack(i  __MINUS__  1, j  __MINUS__  W_i)
+__DECLARE_AS__(value)  __MATH_MAX_BETWEEN__(first, second)
+__END__
+__SET_TO__(__ELEMENT_AT_FROM__(j, V_i))  value
+__INSERT_IN__(V_i, V)
+__END__
+__RETURN__   __ELEMENT_AT_FROM__(j, V_i)
+__END__
+__FUNCTION__  init_table(n)
+__DECLARE_AS__(res)   __EMPTY_ARRAY__
+__DECLARE_AS__(res_0)   __EMPTY_ARRAY__
+__FOR__   __DECLARE_AS__(i)  0; i  __LESS_THAN__  n;  __INCREMENT__(i)   __DO__
+__INSERT_IN__(0, res_0)
+__END__
+__INSERT_IN__(res_0, res)
+__FOR__   __DECLARE_AS__(i)  1; i  __LESS_THAN__  n;  __INCREMENT__(i)   __DO__
+__DECLARE_AS__(res_i)   __EMPTY_ARRAY__
+__INSERT_IN__(0, res_i)
+__FOR__  j = 1; j  __LESS_THAN__  n;  __INCREMENT__(j)   __DO__
+__INSERT_IN__(-1, res_i)
+__END__
+__INSERT_IN__(res_i, res)
+__END__
+__RETURN__  res
+__END__

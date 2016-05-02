@@ -1,0 +1,18 @@
+#Libraries.pkoding.Arrays
+
+function gnomesort(A)
+	declare pos as 1
+	while pos less than length of A do
+		declare m as pos minus 1
+		declare a as element at pos from A
+		declare b as element at m from A
+		if a greater than or equal to b then
+			increment pos
+		else
+			set A to arrays swap pos with m in A
+			if pos greater than 1 then
+				decrement pos
+			end
+		end
+	end
+end

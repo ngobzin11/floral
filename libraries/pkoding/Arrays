@@ -1,0 +1,315 @@
+/**
+ * @regex merge [array] with [array]
+ * @argorder {1, 2}
+ * @tags merge arrays, merge two arrays
+ * @param [array] <Array> - The first array
+ * @param [array] <Array> - The second array
+ */
+function arrays_merge(array1, array2)
+	if array1 identical to null then
+		return array2
+	end
+	if array2 identical to null then
+		return array1
+	end
+	for elem in array2 do
+		insert elem in array1
+	end
+	return array1
+end
+
+
+/**
+ * @regex copy [array]
+ * @argorder {1}
+ * @tags copy array, array copy
+ * @param [array] <Array> - The array being copied
+ */
+function arrays_copy(A)
+	declare res as empty array
+	for a_i in A do
+		insert a_i in res
+	end
+	return res
+end
+
+
+/**
+ * @regex swap <indices >[integer] with [integer] in [array]
+ * @argorder {3, 1, 2}
+ * @tags swap array items, swap items
+ * @param [integer] <Integer> - The first element being swapped
+ * @param [integer] <Integer> - The second element being swapped
+ * @param [array] <Array> - The array containing the two elements
+ */
+function arrays_swap(x, y, arr)
+	if arr identical to null then
+		return arr
+	end
+	declare n as length of arr
+	if x greater than or equal to n or y greater than or equal to n then
+		return arr
+	end
+	declare elem as element at x from arr
+	set [ element at x from arr ] to element at y from arr
+	set [ element at y from arr ] to elem
+	
+	return arr
+end
+
+
+/**
+ * @regex slice [array] from [integer] to [integer]
+ * @argorder {1, 2, 3}
+ * @tags array slice, slice
+ * @param [array] <Array> - The array being sliced
+ * @param [integer] <Integer> - Starting position of slice (inclusive)
+ * @param [integer] <Integer> - Stopping position of slice (exclusive)
+ */
+function arrays_slice_from_to(arr, start, stop) 
+	if arr identical to null then
+		return null
+	end
+	set n to length of arr
+	if n less than stop or n <= start or start >= stop then
+		// TODO: This should throw an error once all is implemented
+		return null
+	end
+	set result to empty array
+	while start less than stop do
+		insert [ element at start from arr ] in result
+		increment start
+	end
+	return result
+end
+
+
+/**
+ * @regex slice [array] from [integer]
+ * @argorder {1, 2}
+ * @tags array slice, slice
+ * @param [array] <Array> - The array being sliced
+ * @param [integer] <Integer> - Starting position of slice (inclusive)
+ */
+function arrays_slice_from(arr, start) 
+	if arr identical to null then
+		return null
+	end
+	set n to length of arr
+	if n <= then
+		// TODO: This should throw an error once all is implemented
+		return null
+	end
+	set result to empty array
+	while start less than n do
+		insert [ element at start from arr ] in result
+		increment start
+	end
+	return result
+end
+
+
+/**
+ * @regex remove at [integer] from [array]
+ * @argorder {2, 1}
+ * @tags remove item at, remove at, remove at from, remove item at from
+ * @param [integer] <Integer> - The idx of the item you want to remove
+ * @param [array] <Array> - The element you want to remove an item from
+ */
+function arrays_remove_at(arr, idx) 
+	if arr identical to null then
+		return null
+	end
+	declare n as length of arr
+	if idx greater than or equal to n then
+		// TODO: This should throw an error once all is implemented
+		return null
+	end
+	declare temp as empty array
+	declare result as element at idx from arr
+	loop i to n
+		if i not equal to idx then
+			insert [ element at i from arr ] in temp
+		end
+	end
+	set arr to temp
+	return result
+end
+
+
+/**
+ * @regex [array] contains [number|string|array]
+ * @argorder {2, 1}
+ * @tags contains, in
+ * @params [array] <Array> - The array you are searching from
+ * @params [number|string|array] <Object> - The item you are searching for
+ /
+native function arrays_contains(needle, haystack)
+
+
+/**
+ * @regex fill with [integer] of [string|number|array] from [integer]
+ * @argorder {3, 1, 2}
+ * @tags fill array, array fill, fill array with
+ * @param [integer] <Integer> - The number of items to fill the array with
+ * @param [string|number|array] <Object> - The item to fill the array with
+ * @param [integer] <Integer> - The starting index
+ */
+function arrays_fill_from(start, num, value) 
+	if num less than 1 then
+		return empty array
+	end
+	set result to empty array
+	
+	// Different from PHP implementation because this is not an associative array: 
+	// 		http://www.php.net/manual/en/function.array-fill.php
+	if start less than 0 then
+		set start to 0
+	end
+	else
+		// Fill out everything before the starting index with null 
+		loop i to start
+			insert null in result
+		end
+	end
+	
+	// Now fill the array with the value
+	while start less than (start plus num) do
+		insert value in result
+		increment start
+	end
+	return result
+end
+
+
+/**
+ * @regex fill with [integer] of [string|number|array]
+ * @argorder {1, 2}
+ * @tags fill array, array fill, fill array with
+ * @param [integer] <Integer> - The number of items to fill the array with
+ * @param [string|number|array] <Object> - The item to fill the array with
+ */
+function arrays_fill(num, value) 
+	if num less than 1 then
+		return empty array
+	end
+	set result to empty array
+	loop i to num
+		insert value in result
+	end
+	
+	return result
+end
+
+
+/**
+ * @regex reverse sort [array]
+ * @argorder {1}
+ * @tags reverse sort, sort
+ * @param [array] <Array> - The array being sorted in reverse
+ */
+function arrays_reverse_sort(input) 
+	return arrays reverse [ sort input ]
+end
+
+
+/**
+ * @regex <create >range <from >[integer] to [integer] by [integer] 
+ * @argorder {1, 2, 3}
+ * @tags create array range, create range, range, array range
+ * @param [integer] <Integer> - The starting position of the range
+ * @param [integer] <Integer> - The stopping position of the range
+ * @param [integer] <Integer> - The step of the range
+ */
+function arrays_range_to_by(start, stop, step) 
+	set result to empty array
+	if step greater than 0 then
+		while start less than stop do
+			insert start in result
+			increment start by step
+		end
+		return result
+	end
+	while start greater than stop do
+		insert start in result
+		increment start by step
+	end
+	return result
+end
+
+
+/**
+ * @regex <create >range <from >[integer] to [integer] 
+ * @argorder {1, 2}
+ * @tags create array range, create range, range, array range
+ * @param [integer] <Integer> - The starting position of the range
+ * @param [integer] <Integer> - The stopping position of the range
+ */
+function arrays_range_to(start, stop) 
+	set result to empty array
+	while start less than stop do
+		insert start in result
+		increment start
+	end
+	return result
+end
+
+
+/**
+ * @regex sum [array]< values>
+ * @argorder {1}
+ * @tags sum array values, sum array, sum
+ * @param [array] <Array> - The array whose values are being summed
+ */
+function arrays_sum(input) 
+	declare result as 0
+	declare N as length of input 
+	loop i to N
+		set result to result plus element at i from input
+	end
+	return result
+end
+
+
+/**
+ * @regex reverse [array]
+ * @argorder {1}
+ * @tags reverse array, reverse
+ * @param [array] <Array> - The array being reversed
+ */
+native function arrays_reverse(input)
+
+
+/**
+ * @regex pad [array] to <size> [integer] with <value> [string|integer|array]
+ * @argorder {1, 2, 3}
+ * @tags pad array, pad
+ * @param [array] <Array> - The array to pad
+ * @param [integer] <Integer> - The size of the new array
+ * @param [string|integer|array] <String|Integer|Array> - The value you are padding the array with 
+ */
+function arrays_pad(orig_arr, size, value)
+	if size equal to 0 then
+		return orig_arr
+	end
+	set arr_size to length of orig_arr
+	if size greater than 0 then
+		while arr_size less than size do
+			insert value in orig_arr
+			increment arr_size
+		end
+ 		return orig_arr
+	end
+	else
+		set result to empty array
+		set endpos to size minus arr_size
+		loop i to endpos
+			insert value in result
+		end
+		
+		for elem in orig_arr do
+			insert elem in result
+		end
+		return result
+	end
+end

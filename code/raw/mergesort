@@ -1,0 +1,54 @@
+#Libraries.pkoding.Arrays
+
+// MergeSort:
+// 	Sorts an array by recursive mergesort
+// 	Input: An array A of orderable elements
+// 	Output: Array A sorted in nondecreasing order
+function mergesort(A)
+	if A identical to null then
+		return null
+	end
+	declare n as length of A
+	if n greater than 1 then 
+		declare half as n over 2
+		declare B as mergesort( arrays slice A from 0 to half )
+		declare C as mergesort( arrays slice A from half )
+		set A to merge(B, C, A)
+	end
+	return A
+end
+
+// Merges two sorted arrays into one sorted array
+// Input: Arrays B and C, both sorted
+// Output: Sorted array A of the elements of B and C
+function merge(B, C, A)
+	declare i as 0
+	declare j as 0
+	declare k as 0
+	declare p as length of B
+	declare q as length of C
+
+	while i less than p and j less than q do
+		declare b_i as element at i from B
+		declare c_j as element at j from C
+		if b_i less than or equal to c_j then
+			set [ element at k from A ] to b_i
+			increment i
+		
+		else
+			set [ element at k from A ] to c_j
+			increment j
+		end
+		increment k
+	end
+
+	if i equal to p then
+		declare slc as arrays slice B from i to p
+		set A to arrays merge A with slc
+	
+	else if j less than q then
+		declare slc as arrays slice C from j to q
+		set A to arrays merge A with slc
+	end
+	return A
+end

@@ -1,0 +1,31 @@
+__NULL__							null
+__AND__								&&
+__OR__								||
+__NOT__								!
+__FALSE__							false
+__TRUE__							true
+__MINUS__							-
+__PLUS__							+
+__OVER__							/
+__TIMES__							*
+__GREATER_THAN__					>
+__GREATER_THAN_OR_EQUAL_TO__		>=
+__LESS_THAN__						<
+__LESS_THAN_OR_EQUAL_TO__			<=
+__EQUAL_TO__						==
+__NOT_EQUAL_TO__					!=
+__IDENTICAL_TO__					===
+__NOT_IDENTICAL_TO__				!==
+__BITWISE_OR__						|
+__BITWISE_NOT__						~
+__BITWISE_XOR__						^
+__BITWISE_AND__						&
+__SHIFT_RIGHT_BY__					%s >> %s
+__SHIFT_LEFT_BY__					%s << %s
+__CONTINUE__						continue
+__BREAK__							break
+__RETURN__							return
+__CONCATENATE__						%s + %s
+__MODULUS__							%%
+__NEGATIVE__						-
+__POSITIVE__						+

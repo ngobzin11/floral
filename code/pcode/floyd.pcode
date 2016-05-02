@@ -1,0 +1,26 @@
+__FUNCTION__  floyd(W)
+__DECLARE_AS__(n)   __LENGTH_OF__(W)
+__DECLARE_AS__(D)  __ARRAYS_COPY__(W)
+__FOR__   __DECLARE_AS__(k)  0; k  __LESS_THAN__  n;  __INCREMENT__(k)   __DO__
+__DECLARE_AS__(D_k)   __ELEMENT_AT_FROM__(k, D)
+__FOR__   __DECLARE_AS__(i)  0; i  __LESS_THAN__  n;  __INCREMENT__(i)   __DO__
+__DECLARE_AS__(D_i)   __ELEMENT_AT_FROM__(i, D)
+__DECLARE_AS__(D_ik)   __ELEMENT_AT_FROM__(k, D_i)
+__FOR__   __DECLARE_AS__(j)  0; j  __LESS_THAN__  n;  __INCREMENT__(j)   __DO__
+__DECLARE_AS__(sm)  D_ik  __PLUS__   __ELEMENT_AT_FROM__(j, D_k)
+__IF__  sm  __LESS_THAN__   __ELEMENT_AT_FROM__(j, D_i)   __THEN__
+__SET_TO__(__ELEMENT_AT_FROM__(j, D_i))  sm
+__END__
+__END__
+__SET_TO__(__ELEMENT_AT_FROM__(i, D))  D_i
+__END__
+__END__
+__RETURN__  D
+__END__
+__FUNCTION__  __ARRAYS_COPY__(A)
+__SET_TO__(res)   __EMPTY_ARRAY__
+__FOR__  a_i  __IN__  A  __DO__
+__INSERT_IN__(a_i, res)
+__END__
+__RETURN__  res
+__END__

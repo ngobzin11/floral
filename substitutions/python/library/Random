@@ -1,0 +1,7 @@
+@import import random
+
+__RANDOM_RANDOM__							random.random()
+__RANDOM_RANDINT__							random.randint(%s, %s)
+__RANDOM_SAMPLE__							random.sample(%2$s, %1$s)
+__RANDOM_SHUFFLE__							random.shuffle(%s)
+__RANDOM_CHOICE__							random.choice(%s)

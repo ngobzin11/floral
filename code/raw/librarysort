@@ -1,0 +1,56 @@
+#Libraries.pkoding.Math
+
+function rebalance(A, start, stop)
+	declare r as stop
+	declare w as stop times 2
+	while r greater than or equal to start do
+		declare m as w plus 1
+		set [ element at m from A ] to gap
+		set [ element at w from A ] to element at r from A
+		decrement r
+		decrement w by 2
+	end
+end
+
+function sort(A)
+	declare n as length of A
+	declare S as empty array
+	declare log_2 as math log base 2 of n plus 1
+	declare mx as math floor of log_2
+
+	loop i up from 1 to mx
+		declare m as i plus 1
+		declare y as i minus 1
+		declare start as 2 power i
+		declare stop as 2 power m
+		loop j up from start to stop
+			declare ins as binarysearch(S, 2 power y)
+			set [ element at ins from S ] to element at j from A
+		end
+	end
+end
+
+function binarysearch(arr, key) 
+	if arr identical to null then
+		return -1
+	end
+	declare n as length of arr
+	declare l as 0
+	declare r as n minus 1
+
+	while l less than or equal to r do
+		declare pos as (l plus r) over 2
+		declare m as math floor of pos
+		if key equal to element at m from arr then
+			return m
+		
+		else if key less than element at m from arr then
+			set r to m minus 1
+		
+		else
+			set l to m plus 1
+		end
+	end
+
+	return -1
+end

@@ -1,0 +1,29 @@
+__FUNCTION__  ternary_search_seq(func, left, right, absolute_precision)
+__WHILE__   __TRUE__   __DO__
+__DECLARE_AS__(lr)  left  __MINUS__  right
+__DECLARE_AS__(temp)  __MATH_ABSOLUTE_VALUE_OF__(lr)
+__IF__  temp  __LESS_THAN__  absolute_precision  __THEN__
+__RETURN__  (left  __PLUS__  right)  __OVER__  2
+__END__
+__DECLARE_AS__(left_third)  left  __PLUS__  (right  __MINUS__  left)  __OVER__  3
+__DECLARE_AS__(right_third)  right  __MINUS__  (right  __MINUS__  left)  __OVER__  3
+__IF__  func(left_third)  __LESS_THAN__  func(right_third)  __THEN__
+__SET_TO__(left)  left_third
+__ELSE__
+__SET_TO__(right)  right_third
+__END__
+__END__
+__END__
+__FUNCTION__  ternary_search_rec(func, left, right, absolute_precision)
+__DECLARE_AS__(lr)  left  __MINUS__  right
+__DECLARE_AS__(absol)  __MATH_ABSOLUTE_VALUE_OF__(lr)
+__IF__  absol  __LESS_THAN__  absolute_precision  __THEN__
+__RETURN__  (left  __PLUS__  right)  __OVER__  2
+__END__
+__DECLARE_AS__(left_third)  (2  __TIMES__  left  __PLUS__  right)  __OVER__  3
+__DECLARE_AS__(right_third)  (left  __PLUS__  2  __TIMES__  right)  __OVER__  3
+__IF__  func(left_third)  __LESS_THAN__  func(right_third)  __THEN__
+__RETURN__  ternary_search_rec(func, left_third, right, absolute_precision)
+__END__
+__RETURN__  ternary_search_rec(func, left, right_third, absolute_precision)
+__END__

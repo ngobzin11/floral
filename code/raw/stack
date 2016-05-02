@@ -1,0 +1,28 @@
+#Libraries.pkoding.Arrays
+
+//declare contents as empty array
+//declare stack_size as length of contents
+
+//function isEmpty()
+//	return stack_size equal to 0
+//end
+
+//function push(elem)
+//	insert elem in contents
+//	increment stack_size
+//end
+
+//function pop()
+//	if stack_size equal to 0 then
+//		return null
+//	end
+//	decrement stack_size
+	return arrays remove at stack_size from contents
+//end
+
+//function destroy()
+//	while stack_size greater than 0 do
+//		remove last from contents
+//		decrement stack_size
+//	end
+//end

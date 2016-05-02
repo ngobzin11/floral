@@ -1,0 +1,21 @@
+// Calculating The n-th Fibonacci Number [Recursive]
+function rec_fib(n)
+	if n less than or equal to 1 then
+		return n
+	end
+	return rec_fib(n minus 1) plus rec_fib(n minus 2)
+end
+
+// Calculating The n-th Fibonacci Number [Iterative]
+function iter_fib(n)
+	declare F as empty array
+	insert 0 in F
+	insert 1 in F
+
+	loop i up from 2 to n plus 1
+		declare i_1 as element at [ i - 1 ] from F
+		declare i_2 as element at [ i - 2 ] from F
+		set [ element at i from F ] to i_1 plus i_2
+	end
+	return element at n from F
+end

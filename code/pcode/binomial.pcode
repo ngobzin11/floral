@@ -1,0 +1,25 @@
+__FUNCTION__ binomial(n, k)
+__IF__ n __LESS_THAN__ 0 __OR__ k __LESS_THAN__ 0 __THEN__
+__RETURN__ 0
+__END__
+__DECLARE_AS__(C)  __EMPTY_ARRAY__
+__FOR__ __DECLARE_AS__(i) 0; i __LESS_THAN_OR_EQUAL_TO__ n; __INCREMENT__(i) __DO__
+__DECLARE_AS__(C_i)  __EMPTY_ARRAY__
+__FOR__ __DECLARE_AS__(j) 0; j __LESS_THAN__ m; __INCREMENT__(j) __DO__
+__IF__ j __EQUAL_TO__ 0 __OR__ j __EQUAL_TO__ i __THEN__
+__INSERT_IN__(1, C_i)
+__ELSE__
+__DECLARE_AS__(C_i1) __ELEMENT_AT_FROM__(i __MINUS__ 1, C)
+__INSERT_IN__((__ELEMENT_AT_FROM__(j __MINUS__ 1, C_i1) )  __PLUS__ (__ELEMENT_AT_FROM__(j, C_i1) ) , C_i)
+__END__
+__END__
+__INSERT_IN__(C_i, C)
+__END__
+__RETURN__ __ELEMENT_AT_FROM__(k, (__ELEMENT_AT_FROM__(n, C) ) )
+__END__
+__FUNCTION__ __MATH_MIN_BETWEEN__(x, y)
+__IF__ x __LESS_THAN__ y __THEN__
+__RETURN__ x
+__END__
+__RETURN__ y
+__END__

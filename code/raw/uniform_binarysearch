@@ -1,0 +1,40 @@
+// Uniform Binary Search: http://en.wikipedia.org/wiki/Uniform_binary_search
+function make_delta(N)
+	declare delta as empty array
+	declare pw as 1
+
+	loop i to N
+		declare half as pw
+		set pw to shift pw left by 1
+		declare val as (N plus half) over pw
+		insert val in delta
+	end
+	
+	return delta
+end
+
+function uniform_binarysearch(arr, key)
+	declare N as length of arr
+	declare delta as make_delta(N)
+	declare i as element at [ (N minus 1) over 2 ] from arr
+	declare d as 0
+
+	while true do
+		if key equal to element at i from arr then
+			return i
+
+		else if element at d from delta equal to 0 then
+			return -1
+
+		else
+			increment d
+			declare delem as element at d from delta
+			if key less than element at i from arr then
+				decrement i by delem
+
+			else
+				increment i by delem
+			end
+		end
+	end
+end

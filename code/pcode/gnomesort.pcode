@@ -1,0 +1,26 @@
+__FUNCTION__ gnomesort(A)
+__DECLARE_AS__(pos) 1
+__WHILE__ pos __LESS_THAN__ __LENGTH_OF__(A)  __DO__
+__DECLARE_AS__(m) pos __MINUS__ 1
+__IF__ (__ELEMENT_AT_FROM__(pos, A) )  __GREATER_THAN_OR_EQUAL_TO__ (__ELEMENT_AT_FROM__(m, A) )  __THEN__
+__INCREMENT__(pos)
+__ELSE__
+__SET_TO__(A) __ARRAYS_SWAP__(pos, m, A)
+__IF__ pos __GREATER_THAN__ 1 __THEN__
+__DECREMENT__(pos)
+__END__
+__END__
+__END__
+__END__
+__FUNCTION__ __ARRAYS_SWAP__(x, y, arr)
+__IF__ arr __IDENTICAL_TO__  __NULL__  __THEN__
+__RETURN__ arr
+__END__
+__DECLARE_AS__(n) __LENGTH_OF__(arr)
+__IF__ x __GREATER_THAN_OR_EQUAL_TO__ n __OR__ y __GREATER_THAN_OR_EQUAL_TO__ n __THEN__
+__RETURN__ arr
+__END__
+__SET_TO__(__ELEMENT_AT_FROM__(x, arr) ) __ELEMENT_AT_FROM__(y, arr)
+__SET_TO__(__ELEMENT_AT_FROM__(y, arr) ) (__ELEMENT_AT_FROM__(x, arr) )
+__RETURN__ arr
+__END__

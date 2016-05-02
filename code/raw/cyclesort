@@ -1,0 +1,46 @@
+#Libraries.pkoding.Arrays
+
+function cyclesort(A)
+	declare writes as 0
+	declare n as length of A minus 2
+
+	loop j to n plus 1
+		declare item as element at j from A
+		declare pos as j
+
+		loop i up from j plus 1 to n plus 2
+			if element at i from A less than item then
+				increment i
+			end
+		end
+
+		if pos equal to j then 
+			continue
+		end
+
+		while item equal to element at pos from A do
+			increment pos
+		end
+
+		set A to arrays swap pos with j in A
+		increment writes
+
+		while pos not equal to j do
+			set pos to j
+			loop i up from j plus 1 to n plus 2
+				if element at i from A less than item then
+					increment pos
+				end
+			end
+
+			while item equal to element at pos from A do
+				increment pos
+			end
+
+			set A to arrays swap pos with j in A
+			increment writes
+		end
+	end
+
+	return writes
+end

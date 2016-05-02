@@ -1,0 +1,32 @@
+__FUNCTION__  make_delta(N)
+__DECLARE_AS__(delta)   __EMPTY_ARRAY__
+__DECLARE_AS__(pw)  1
+__FOR__   __DECLARE_AS__(i)  0; i  __LESS_THAN__  N;  __INCREMENT__(i)   __DO__
+__DECLARE_AS__(half)  pw
+__SET_TO__(pw)   __SHIFT_LEFT_BY__(pw, 1)
+__DECLARE_AS__(val)  (N  __PLUS__  half)  __OVER__  pw
+__INSERT_IN__(val, delta)
+__END__
+__RETURN__  delta
+__END__
+__FUNCTION__  uniform_binarysearch(arr, key)
+__DECLARE_AS__(N)   __LENGTH_OF__(arr)
+__DECLARE_AS__(delta)  make_delta(N)
+__DECLARE_AS__(i)   __ELEMENT_AT_FROM__((N  __MINUS__  1)  __OVER__  2, arr)
+__DECLARE_AS__(d)  0
+__WHILE__   __TRUE__   __DO__
+__IF__  key  __EQUAL_TO__   __ELEMENT_AT_FROM__(i, arr)   __THEN__
+__RETURN__  i
+__ELSE_IF__   __ELEMENT_AT_FROM__(d, delta)   __EQUAL_TO__  0  __THEN__
+__RETURN__  -1
+__ELSE__
+__INCREMENT__(d)
+__DECLARE_AS__(delem)   __ELEMENT_AT_FROM__(d, delta)
+__IF__  key  __LESS_THAN__   __ELEMENT_AT_FROM__(i, arr)   __THEN__
+__DECREMENT_BY__(i, delem)
+__ELSE__
+__INCREMENT_BY__(i, delem)
+__END__
+__END__
+__END__
+__END__

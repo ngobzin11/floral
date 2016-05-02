@@ -1,0 +1,42 @@
+/**
+ * @regex		search [string] from [string]
+ * @argorder	{1, 2}
+ * @tags		match, regex match
+ * @param [string] <String> - The regular expression pattern being searched for
+ * @param [string] <String> - The string possibly holding the expression
+ */
+native function regex_search(pattern, inpt)
+
+/**
+ * @regex		split [string] by [string]
+ * @argorder	{1, 2}
+ * @tags		match, regex match
+ * @param [string] <String> - The string being split
+ * @param [string] <String> - The regular expression pattern used to split the string
+ */
+native function regex_split(inpt, pattern)
+
+/**
+ * @regex		replace [string] by [string] in [string]
+ * @argorder	{3, 1, 2}
+ * @tags		match, regex match
+ * @param [string] <String> - The complete string with substrings to be replaced
+ * @param [string] <String> - The regular expression pattern matching strings to be replaced
+ * @param [string] <String> - The replacement string
+ */
+native function regex_split(inpt, pattern, replacement)
+
+/**
+ * @regex		test [string] on [string]
+ * @argorder 	{1, 2}
+ * @tags		test, regex test
+ * @param [string] <String> - The regular expression pattern being searched for
+ * @param [string] <String> - The string possibly holding the expression
+ */
+function regex_test(pattern, inpt)
+	if regex search pattern from inpt then
+		return true
+	else
+		return false
+	end
+end

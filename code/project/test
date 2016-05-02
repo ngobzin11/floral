@@ -1,0 +1,7 @@
+class Structure
+	public build()
+	private read()
+	
+	public proj_class
+	public proj_func
+	public proj_var 

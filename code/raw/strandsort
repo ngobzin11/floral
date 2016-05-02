@@ -1,0 +1,66 @@
+#Libraries.pkoding.Arrays
+
+function strandsort(A)
+	declare items as length of A
+	declare sorted_bins as empty array
+
+	declare highest as element at 0 from A
+	loop i up from 1 to length of A
+		if highest less than element at i from A then
+			set highest to element at i from A
+		end
+	end
+
+	while items greater than 0 do
+		declare new_bin as empty array
+		declare i as 0
+
+		while i less than items do
+			if element at i from A greater than or equal to highest then
+				set highest to arrays remove at i from A
+				insert highest in new_bin
+			else
+				increment i
+			end
+		end
+
+		for elem in new_bin do
+			insert elem in sorted_bins
+		end
+	end
+
+	declare all_sorted as empty array
+	while length of all_sorted less than items do
+		declare low_bin as 0
+		loop j to length of sorted_bins
+			declare B as element at j from sorted_bins
+			declare C as element at low_bin from sorted_bins
+			if element at 0 from B less than element at 0 from C then
+				set low_bin to j
+			end
+		end
+
+		declare M as element at low_bin from sorted_bins
+		declare elem as arrays remove at 0 from M
+		insert elem in all_sorted
+		if length of M equal to 0 then
+			set sorted_bins to ignoreAt(sorted_bins, low_bin)
+		end
+	end
+end
+
+function ignoreAt(sorted_bins, low_bin)
+	declare n as length of sorted_bins
+	if n equal to 0 then
+		return sorted_bins
+	end
+
+	declare new_arr as empty array
+	loop i to n
+		if i not equal to low_bin then
+			declare elem as element at i from soerted_bins
+			insert elem in new_arr 
+		end
+	end
+	return new_arr
+end

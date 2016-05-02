@@ -1,0 +1,232 @@
+//
+// TIC TAC TOE: http://inventwithpython.com/chapter10.html
+//
+#Libraries.pkoding.Arrays
+#Libraries.pkoding.Random
+
+function draw_board(board)
+	// This function prints out the board that it was passed 
+	// "board" is a list of 10 strings representing the board (ignore index 0)
+	print "   |   |"
+	print " " + element at 7 from board + " | " + element at 8 from board + " | " + element at 9 from board
+	print "   |   |"
+	print "-----------"
+	print "   |   |"
+	print " " + element at 4 from board + " | " + element at 5 from board + " | " + element at 6 from board
+	print "   |   |"
+	print "-----------"
+	print "   |   |"
+	print " " + element at 1 from board + " | " + element at 2 from board + " | " + element at 3 from board
+	print "   |   |"
+	print "-----------"
+	print "   |   |"
+end
+
+function input_player_letter()
+	// Lets the player enter the letter they want
+	// Returns a list with the player's letter as the first item, and the computer's letter as the second
+	declare letter as ""
+	// Remember to put back the not
+	while letter identical to 'X' or letter identical to 'O' do
+		set letter to raw input "Do you want to be X or O? "
+		set letter to uppercase letter
+	end
+	// The first element in the list is the player's letter, the second element is the computer's letter
+	if letter identical to 'X' then
+		return { 'X', 'O' }
+	else
+		return { 'O', 'X' }
+	end
+end
+
+function who_goes_first()
+	// Randomly choose the player who goes first.
+	if random integer between 0 and 1 equal to 0 then
+		return 'computer'
+	else 
+		return 'player'
+	end
+end
+
+function play_again() 
+	// Returns true if the player wants to play again, otherwise it returns false
+	declare inpt as raw input "Do you want to play again? (y or n): "
+	return lowercase inpt equal to 'y'
+end
+
+function make_move(board, letter, move) 
+	set [ element at move from board ] to letter
+end
+
+function is_winner(bo, le) 
+	// Given a board and a player's letter, this function returns True if that player has won
+	return (( element at 7 from bo equal to le and element at 8 from bo equal to le and element at 9 from bo equal to le) or ( element at 4 from bo equal to le and element at 5 from bo equal to le and element at 6 from bo equal to le) or ( element at 1 from bo equal to le and element at 2 from bo equal to le and element at 3 from bo equal to le) or ( element at 7 from bo equal to le and element at 4 from bo equal to le and element at 1 from bo equal to le) or ( element at 8 from bo equal to le and element at 5 from bo equal to le and element at 2 from bo equal to le) or ( element at 9 from bo equal to le and element at 6 from bo equal to le and element at 3 from bo equal to le) or ( element at 7 from bo equal to le and element at 5 from bo equal to le and element at 3 from bo equal to le) or ( element at 9 from bo equal to le and element at 5 from bo equal to le and element at 1 from bo equal to le ))
+end
+
+function get_board_copy(board)
+	// Make a duplicate of the board list and return it
+	declare dup_board as empty array
+	for el in board do
+		insert el in dup_board
+	end
+	return dup_board
+end
+
+function is_open_space(board, move) 
+	// Return true if the passed move is free on the passed board
+	return element at move from board identical to " "
+end
+
+function get_player_move(board)
+	// Let the player type in their move
+	declare move as cast " " to int
+	declare moves as split "1 2 3 4 5 6 7 8 9" by " "
+	// or not
+	while not ( arrays moves contains move ) or is_open_space(board, move) do
+		set move to raw input "What is your next move? (1 - 9)? "
+		set move to cast move to int
+	end
+	return cast move to int
+end
+
+function choose_random_move(board, moves) 
+	// Returns a valid move from the passed list on the passed board
+	// Returns none if there is no valid move
+	declare possible_moves as empty array
+	for move in moves do
+		if is_open_space(board, move) then
+			insert move in possible_moves
+		end
+	end
+	if length of possible_moves not equal to 0 then
+		return random choice from possible_moves
+	else 
+		return null
+	end
+end
+
+function get_computer_move(board, computer_letter) 
+	// Given the board and the computer's letter, determine where to move and return that move
+	if computer_letter equal to 'X' then
+		declare player_letter as 'O'
+	else 
+		declare player_letter as 'X'
+	end
+
+	// Algorithm For The Tic Tac Toe AI
+	// First check if we can win in the next move
+	loop i up from 1 to 10
+		declare copy as get_board_copy(board)
+		if is_open_space(copy, i) then
+			make_move(copy, computer_letter, i)
+			if is_winner(copy, computer_letter) then
+				return i
+			end
+		end
+	end
+
+	// Check if the player could win in the next move, and block them
+	loop i up from 1 to 10
+		set copy to get_board_copy(board)
+		if is_open_space(copy, i) then
+			make_move(copy, player_letter, i)
+			if is_winner(copy, player_letter) then
+				return i
+			end
+		end
+	end
+
+	// Try to take one of the corners if they are free
+	declare corners as { 1, 3, 7, 9 }
+	declare move as choose_random_move(board, corners)
+	if move not equal to null then
+		return move
+	end
+
+	// Try to take the center if it's free
+	if is_open_space(board, 5) then
+		return 5
+	end
+
+	// Move on one of the sides
+	declare sides as { 2, 4, 6, 8 }
+	return choose_random_move(board, sides)
+end
+
+function is_board_full(board)
+	// Return true if every space on the board has been taken, otherwise return false
+	loop i to 10
+		if is_open_space(board, i) then
+			return false
+		end
+	end
+	return true
+end
+
+function main()
+	print "Welcome to Tic Tac Toe!"
+
+	// Play Game
+	while true do
+		// Reset the board
+		declare the_board as empty array
+		set the_board to arrays fill with 10 of " "
+
+		// Set player letters
+		declare letters as input_player_letter()
+		declare player_letter as element at 0 from letters
+		declare computer_letter as element at 1 from letters
+		
+		declare turn as who_goes_first()
+		print "The " concatenate turn concatenate " will go first"
+		declare game_playing as true
+		
+		while game_playing do
+			// If it's the player's turn
+			if turn equal to "player" then
+				draw_board(the_board)
+				set move to get_player_move(the_board)
+				make_move(the_board, player_letter, move)
+				
+				if is_winner(the_board, player_letter) then
+					draw_board(the_board)
+					print "Hooray! You have won the game!"
+					set game_playing to false
+				
+				else 
+					if is_board_full(the_board) then
+						draw_board(the_board)
+						print "The Game Is A Tie!"
+						break
+					
+					else
+						set turn to 'computer'
+					end
+				end
+			else 
+				// Computer's Turn
+				set move to get_computer_move(the_board, computer_letter)
+				make_move(the_board, computer_letter, move)
+				if is_winner(the_board, computer_letter) then
+					draw_board(the_board)
+					print "The computer has beaten you! You lose."
+					game_playing = false
+				else 
+					if is_board_full(the_board) then
+						draw_board(the_board)
+						print "The Game Is A Tie!"
+						break
+					
+					else
+						set turn to "player"
+					end
+				end
+			end
+		end
+
+		if not play_again() then
+			break
+		end
+	end
+end
+

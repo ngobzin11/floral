@@ -1,0 +1,34 @@
+#Libraries.pkoding.Math
+
+// Jump Search: http://en.wikipedia.org/wiki/Jump_search
+//
+//		Input: An ordered list L, it's length n and a search key s
+//		Output: The position of s in L, or nothing if s is not in L
+function jump_search(L, n, s)
+	declare a as 0
+	declare sq as math square root n
+	declare b as math floor sq
+	declare pos as math min between b and n minus 1
+
+	while element at pos from L less than s do
+		set a to b
+		declare sq as math square root n
+		set b to b plus math floor sq
+		if a greater than or equal to n then
+			return -1
+		end
+	end
+
+	while element at a from L less than s do
+		increment a
+		if a equal to math min between b and n then
+			return -1
+		end
+	end
+
+	if element at a from L not equal to s then
+		return -1
+	end
+
+	return a
+end

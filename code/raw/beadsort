@@ -1,0 +1,57 @@
+function beadsort(A)
+	declare n as length of A
+	if n equal to 0 or n equal to 1 then 
+		return A
+	end
+
+	declare mx as element at 1 from A
+	declare star as '*'
+	loop i up from 1 to n
+		if element at i from A greater than mx then
+			set mx to element at i from A
+		end
+	end
+
+	declare level_count as empty array
+	loop i to mx
+		insert 0 in level_count
+	end
+
+	declare grid as empty array
+	loop j to n
+		declare temp as empty array
+		loop i to mx
+			insert '_' in temp
+		end
+		insert temp in grid
+	end
+
+	loop i to n
+		declare num as element at i from A
+		declare j as 0
+		while num greater than 0 and j less than mx do
+			set [ element at j from level_count ] to element at j from level_count plus 1
+			declare lc as element at j from level_count
+			declare temp as element at lc from grid
+			insert star in temp at j
+			insert temp in grid at lc
+			increment j
+			decrement num
+		end
+	end
+
+	declare all_sorted as empty array
+	loop i to n
+		declare m as n minus 1 minus i
+		declare temp as element at m from grid
+		declare putt as 0
+		declare j as 0
+		while j less than mx and element at j from temp equal to star do
+			increment putt
+			increment j
+		end
+		insert putt in all_sorted
+	end
+
+	return all_sorted
+end

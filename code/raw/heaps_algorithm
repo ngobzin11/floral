@@ -1,0 +1,17 @@
+#Libraries.pkoding.Arrays
+
+function heaps_algorithm(A, n)
+	if n equal to 1 then
+		return A
+	end
+
+	loop i up from 1 to n plus 1
+		heaps_algorithm(A, n minus 1)
+		declare j as 1
+		// If n is even
+		if n modulus 2 equal to 0 then
+			set j to i
+		end
+		set A to arrays swap j with n in A
+	end
+end

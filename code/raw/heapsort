@@ -1,0 +1,48 @@
+#Libraries.pkoding.Arrays
+
+// HeapSort:
+//	
+function heapsort(arr)
+	if arr identical to null then
+		return arr
+	end
+	declare n as length of arr
+	set arr to heapify(arr, n)
+	declare endpos as n minus 1
+	while endpos greater than 0 do
+		set arr to arrays swap endpos with 0 in arr
+		decrement endpos
+		set arr to sift_down(arr, 0, endpos)
+	end
+	return arr
+end
+
+function heapify(arr, n)
+	declare start as ( n minus 2 ) over 2
+	while start greater than or equal to 0 do
+		set arr to sift_down(arr, start, n minus 1)
+		decrement start
+	end
+	return arr
+end
+
+function sift_down(arr, start, endpos) 
+	declare rpos as start
+	while rpos times 2 plus 1 less than or equal to endpos do
+		declare cpos as rpos times 2 plus 1
+		declare child as element at cpos from arr
+		declare sibling as element at [ cpos plus 1 ] from arr
+		declare root as element at rpos from arr
+
+		if cpos plus 1 less than or equal to endpos and child less than sibling then
+			increment cpos
+		end
+		if root less than child then
+			set arr to arrays swap indices rpos with cpos in arr
+			set rpos to cpos
+		else
+			return arr
+		end
+	end
+	return arr
+end

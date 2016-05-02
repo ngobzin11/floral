@@ -1,0 +1,58 @@
+#Libraries.pkoding.Math
+
+// The weights of the objects: This needs to be entered by the user
+declare Weights as empty array
+
+// The values of the objects: This needs to be entered by the user
+declare Values as empty array
+
+// The table containing 
+declare V as init_table( length of Weights )
+
+
+// Knapsack:
+//	Implements the memory function method for the knapsack problem
+//	Inputs: 
+//		i - A non-negative integer indicating the number of 
+//			the first items being considered
+//		j - A non-negative integer indicating the knapsack's
+//			capacity
+//	Output: The value of an optimal feasible subset of the first i items
+function knapsack(i, j)
+	declare V_i as element at i from V
+	if element at j from V_i less than 0 then
+		if j less than element at i from Weights then
+			declare value as knapsack(i minus 1, j)
+			
+		else
+			declare first as knapsack(i minus 1, j)
+			set V_i to element at i from Values
+			declare W_i as element at i from Weights
+			declare second as V_i plus knapsack(i minus 1, j minus W_i)
+			declare value as math max between first and second
+		end
+		set [ element at j from V_i ] to value
+		insert V_i in V
+	end
+	return element at j from V_i
+end
+
+
+function init_table(n)
+	declare res as empty array
+	declare res_0 as empty array
+	loop i to n
+		insert 0 in res_0
+	end
+	insert res_0 in res
+	
+	loop i up from 1 to n
+		declare res_i as empty array
+		insert 0 in res_i
+		loop j up from 1 to n
+			insert -1 in res_i
+		end
+		insert res_i in res
+	end
+	return res
+end

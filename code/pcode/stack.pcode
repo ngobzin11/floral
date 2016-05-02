@@ -1,0 +1,40 @@
+__DECLARE_AS__(contents)   __EMPTY_ARRAY__
+__DECLARE_AS__(stack_size)   __LENGTH_OF__(contents)
+__FUNCTION__  isEmpty()
+__RETURN__  stack_size  __EQUAL_TO__  0
+__END__
+__FUNCTION__  push(elem)
+__INSERT_IN__(elem, contents)
+__INCREMENT__(stack_size)
+__END__
+__FUNCTION__  pop()
+__IF__  stack_size  __EQUAL_TO__  0  __THEN__
+__RETURN__   __NULL__
+__END__
+__DECREMENT__(stack_size)
+__RETURN__  __ARRAYS_REMOVE_AT__(stack_size, contents)
+__END__
+__FUNCTION__  destroy()
+__WHILE__  stack_size  __GREATER_THAN__  0  __DO__
+__REMOVE_LAST_FROM__(contents)
+__DECREMENT__(stack_size)
+__END__
+__END__
+__FUNCTION__  __ARRAYS_REMOVE_AT__(arr, idx)
+__IF__  arr  __IDENTICAL_TO__   __NULL__   __THEN__
+__RETURN__   __NULL__
+__END__
+__DECLARE_AS__(n)   __LENGTH_OF__(arr)
+__IF__  idx  __GREATER_THAN_OR_EQUAL_TO__  n  __THEN__
+__RETURN__   __NULL__
+__END__
+__DECLARE_AS__(temp)   __EMPTY_ARRAY__
+__DECLARE_AS__(result)   __ELEMENT_AT_FROM__(idx, arr)
+__FOR__   __DECLARE_AS__(i)  0; i  __LESS_THAN__  n;  __INCREMENT__(i)   __DO__
+__IF__  i  __NOT_EQUAL_TO__  idx  __THEN__
+__INSERT_IN__(__ELEMENT_AT_FROM__(i, arr), temp)
+__END__
+__END__
+__SET_TO__(arr)  temp
+__RETURN__  result
+__END__

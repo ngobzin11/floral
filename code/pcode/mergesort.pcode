@@ -1,0 +1,70 @@
+__FUNCTION__  mergesort(A)
+__IF__  A  __IDENTICAL_TO__   __NULL__   __THEN__
+__RETURN__   __NULL__
+__END__
+__DECLARE_AS__(n)   __LENGTH_OF__(A)
+__IF__  n  __GREATER_THAN__  1  __THEN__
+__DECLARE_AS__(half)  n  __OVER__  2
+__DECLARE_AS__(B)  mergesort( __ARRAYS_SLICE_FROM_TO__(A, 0, half)  )
+__DECLARE_AS__(C)  mergesort( __ARRAYS_SLICE_FROM__(A, half)  )
+__SET_TO__(A)  merge(B, C, A)
+__END__
+__RETURN__  A
+__END__
+__FUNCTION__  merge(B, C, A)
+__DECLARE_AS__(i)  0
+__DECLARE_AS__(j)  0
+__DECLARE_AS__(k)  0
+__DECLARE_AS__(p)   __LENGTH_OF__(B)
+__DECLARE_AS__(q)   __LENGTH_OF__(C)
+__WHILE__  i  __LESS_THAN__  p  __AND__  j  __LESS_THAN__  q  __DO__
+__DECLARE_AS__(b_i)   __ELEMENT_AT_FROM__(i, B)
+__DECLARE_AS__(c_j)   __ELEMENT_AT_FROM__(j, C)
+__IF__  b_i  __LESS_THAN_OR_EQUAL_TO__  c_j  __THEN__
+__SET_TO__(__ELEMENT_AT_FROM__(k, A))  b_i
+__INCREMENT__(i)
+__ELSE__
+__SET_TO__(__ELEMENT_AT_FROM__(k, A))  c_j
+__INCREMENT__(j)
+__END__
+__INCREMENT__(k)
+__END__
+__IF__  i  __EQUAL_TO__  p  __THEN__
+__DECLARE_AS__(slc)  __ARRAYS_SLICE_FROM_TO__(B, i, p)
+__SET_TO__(A)  __ARRAYS_MERGE__(A, slc)
+__ELSE_IF__  j  __LESS_THAN__  q  __THEN__
+__DECLARE_AS__(slc)  __ARRAYS_SLICE_FROM_TO__(C, j, q)
+__SET_TO__(A)  __ARRAYS_MERGE__(A, slc)
+__END__
+__RETURN__  A
+__END__
+__FUNCTION__  __ARRAYS_SLICE_FROM_TO__(arr, start, stop)
+__IF__  arr  __IDENTICAL_TO__   __NULL__   __THEN__
+__RETURN__   __NULL__
+__END__
+__SET_TO__(n)   __LENGTH_OF__(arr)
+__IF__  n  __LESS_THAN__  stop  __OR__  n  __LESS_THAN__   __OR__   __EQUAL_TO__  start  __OR__  start  __GREATER_THAN__   __OR__   __EQUAL_TO__  stop  __THEN__
+__RETURN__   __NULL__
+__END__
+__SET_TO__(result)   __EMPTY_ARRAY__
+__WHILE__  start  __LESS_THAN__  stop  __DO__
+__INSERT_IN__(__ELEMENT_AT_FROM__(start, arr), result)
+__INCREMENT__(start)
+__END__
+__RETURN__  result
+__END__
+__FUNCTION__  __ARRAYS_SLICE_FROM__(arr, start)
+__IF__  arr  __IDENTICAL_TO__   __NULL__   __THEN__
+__RETURN__   __NULL__
+__END__
+__SET_TO__(n)   __LENGTH_OF__(arr)
+__IF__  n  __LESS_THAN_OR_EQUAL_TO__  start  __THEN__
+__RETURN__   __NULL__
+__END__
+__SET_TO__(result)   __EMPTY_ARRAY__
+__WHILE__  start  __LESS_THAN__  n  __DO__
+__INSERT_IN__(__ELEMENT_AT_FROM__(start, arr), result)
+__INCREMENT__(start)
+__END__
+__RETURN__  result
+__END__

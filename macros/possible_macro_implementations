@@ -1,0 +1,19 @@
+1. do while loop:
+	// Example 1
+	stuff()
+	if fail_condition:
+		break
+
+	// Example 2
+	condition = True
+	while condition:
+		# loop body here
+		condition = test_loop_condition()
+
+
+2. fill array [array] with value [value]:
+	loop i to length of [array]
+		set [ element at i from [array] ] to [value]
+	end
+
+3. 

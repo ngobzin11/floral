@@ -1,0 +1,15 @@
+__CAST_TO__																								|	%s(%s)
+__END__																									|	}
+__IF__ [anything] __THEN__																				|	if (%s) {
+__ELSE__																								|	} else {
+__ELSE_IF__	[anything] __THEN__																			|	} else if (%s) {
+__WHILE__ [anything] __DO__																				|	while (%s) {
+__TRY__																									|	try {
+__FOR__	[anything] __DO__																				|	for (%s) {
+__LOOP_UP_FROM_TO_BY__																					|
+__LOOP_DOWN_FROM_TO_BY__																				|
+__FOR__ [variable] __IN__ [variable] __DO__																|	foreach (%2$s as %1$s) {
+__CATCH__ [anything]																					|	} catch (%s) {
+__FINALLY__																								|	} finally {
+__CLASS__ [variable]																					|	class %s {
+__FUNCTION__ [function_call]																			|	function %s%s {

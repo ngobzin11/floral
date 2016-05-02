@@ -1,0 +1,13 @@
+__FUNCTION__ insertionsort(A)
+__FOR__ __DECLARE_AS__(i) 1; i __LESS_THAN__ __LENGTH_OF__(A) ; __INCREMENT__(i)  __DO__
+__DECLARE_AS__(x) __ELEMENT_AT_FROM__(i, A)
+__DECLARE_AS__(j) i
+__DECLARE_AS__(m) j __MINUS__ 1
+__WHILE__ j __GREATER_THAN__ 0 __AND__ __ELEMENT_AT_FROM__(m, A)  __GREATER_THAN__ x __DO__
+__SET_TO__(m) j __MINUS__ 1
+__SET_TO__(__ELEMENT_AT_FROM__(j, A) ) __ELEMENT_AT_FROM__(m, A)
+__DECREMENT__(j)
+__END__
+__SET_TO__(__ELEMENT_AT_FROM__(j, A) ) x
+__END__
+__END__

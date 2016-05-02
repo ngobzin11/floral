@@ -1,0 +1,195 @@
+__FUNCTION__  draw_board(board)
+__PRINT__(__AUTO_STRING_0__)
+__PRINT__(__AUTO_STRING_1__ +  __ELEMENT_AT_FROM__(7, board)  + __AUTO_STRING_2__ +  __ELEMENT_AT_FROM__(8, board)  + __AUTO_STRING_3__ +  __ELEMENT_AT_FROM__(9, board) )
+__PRINT__(__AUTO_STRING_4__)
+__PRINT__(__AUTO_STRING_5__)
+__PRINT__(__AUTO_STRING_6__)
+__PRINT__(__AUTO_STRING_7__ +  __ELEMENT_AT_FROM__(4, board)  + __AUTO_STRING_8__ +  __ELEMENT_AT_FROM__(5, board)  + __AUTO_STRING_9__ +  __ELEMENT_AT_FROM__(6, board) )
+__PRINT__(__AUTO_STRING_10__)
+__PRINT__(__AUTO_STRING_11__)
+__PRINT__(__AUTO_STRING_12__)
+__PRINT__(__AUTO_STRING_13__ +  __ELEMENT_AT_FROM__(1, board)  + __AUTO_STRING_14__ +  __ELEMENT_AT_FROM__(2, board)  + __AUTO_STRING_15__ +  __ELEMENT_AT_FROM__(3, board) )
+__PRINT__(__AUTO_STRING_16__)
+__PRINT__(__AUTO_STRING_17__)
+__PRINT__(__AUTO_STRING_18__)
+__END__
+__FUNCTION__  input_player_letter()
+__DECLARE_AS__(letter)  __AUTO_STRING_19__
+__WHILE__  letter  __IDENTICAL_TO__  __AUTO_STRING_20__  __OR__  letter  __IDENTICAL_TO__  __AUTO_STRING_21__  __DO__
+__SET_TO__(letter)   __RAW_INPUT__(__AUTO_STRING_22__)
+__SET_TO__(letter)   __UPPERCASE__(letter)
+__END__
+__IF__  letter  __IDENTICAL_TO__  __AUTO_STRING_23__  __THEN__
+__RETURN__  [__AUTO_STRING_24__, __AUTO_STRING_25__]
+__ELSE__
+__RETURN__  [__AUTO_STRING_26__, __AUTO_STRING_27__]
+__END__
+__END__
+__FUNCTION__  who_goes_first()
+__IF__  __RANDOM_RANDINT__(0, 1)   __EQUAL_TO__  0  __THEN__
+__RETURN__  __AUTO_STRING_28__
+__ELSE__
+__RETURN__  __AUTO_STRING_29__
+__END__
+__END__
+__FUNCTION__  play_again()
+__DECLARE_AS__(inpt)   __RAW_INPUT__(__AUTO_STRING_30__)
+__RETURN__   __LOWERCASE__(inpt)   __EQUAL_TO__  __AUTO_STRING_31__
+__END__
+__FUNCTION__  make_move(board, letter, move)
+__SET_TO__(__ELEMENT_AT_FROM__(move, board))  letter
+__END__
+__FUNCTION__  is_winner(bo, le)
+__RETURN__  ((  __ELEMENT_AT_FROM__(7, bo)   __EQUAL_TO__  le  __AND__   __ELEMENT_AT_FROM__(8, bo)   __EQUAL_TO__  le  __AND__   __ELEMENT_AT_FROM__(9, bo)   __EQUAL_TO__  le)  __OR__  (  __ELEMENT_AT_FROM__(4, bo)   __EQUAL_TO__  le  __AND__   __ELEMENT_AT_FROM__(5, bo)   __EQUAL_TO__  le  __AND__   __ELEMENT_AT_FROM__(6, bo)   __EQUAL_TO__  le)  __OR__  (  __ELEMENT_AT_FROM__(1, bo)   __EQUAL_TO__  le  __AND__   __ELEMENT_AT_FROM__(2, bo)   __EQUAL_TO__  le  __AND__   __ELEMENT_AT_FROM__(3, bo)   __EQUAL_TO__  le)  __OR__  (  __ELEMENT_AT_FROM__(7, bo)   __EQUAL_TO__  le  __AND__   __ELEMENT_AT_FROM__(4, bo)   __EQUAL_TO__  le  __AND__   __ELEMENT_AT_FROM__(1, bo)   __EQUAL_TO__  le)  __OR__  (  __ELEMENT_AT_FROM__(8, bo)   __EQUAL_TO__  le  __AND__   __ELEMENT_AT_FROM__(5, bo)   __EQUAL_TO__  le  __AND__   __ELEMENT_AT_FROM__(2, bo)   __EQUAL_TO__  le)  __OR__  (  __ELEMENT_AT_FROM__(9, bo)   __EQUAL_TO__  le  __AND__   __ELEMENT_AT_FROM__(6, bo)   __EQUAL_TO__  le  __AND__   __ELEMENT_AT_FROM__(3, bo)   __EQUAL_TO__  le)  __OR__  (  __ELEMENT_AT_FROM__(7, bo)   __EQUAL_TO__  le  __AND__   __ELEMENT_AT_FROM__(5, bo)   __EQUAL_TO__  le  __AND__   __ELEMENT_AT_FROM__(3, bo)   __EQUAL_TO__  le)  __OR__  (  __ELEMENT_AT_FROM__(9, bo)   __EQUAL_TO__  le  __AND__   __ELEMENT_AT_FROM__(5, bo)   __EQUAL_TO__  le  __AND__   __ELEMENT_AT_FROM__(1, bo)   __EQUAL_TO__  le ))
+__END__
+__FUNCTION__  get_board_copy(board)
+__DECLARE_AS__(dup_board)   __EMPTY_ARRAY__
+__FOR__  el  __IN__  board  __DO__
+__INSERT_IN__(el, dup_board)
+__END__
+__RETURN__  dup_board
+__END__
+__FUNCTION__  is_open_space(board, move)
+__RETURN__   __ELEMENT_AT_FROM__(move, board)   __IDENTICAL_TO__  __AUTO_STRING_32__
+__END__
+__FUNCTION__  get_player_move(board)
+__DECLARE_AS__(move)   __CAST_TO__(__AUTO_STRING_33__, int)
+__DECLARE_AS__(moves)   __SPLIT_BY__(__AUTO_STRING_34__, __AUTO_STRING_35__)
+__WHILE__   __NOT__  ( __ARRAYS_CONTAINS__(moves, move)  )  __OR__   __NOT__  is_open_space(board, move)  __DO__
+__SET_TO__(move)   __RAW_INPUT__(__AUTO_STRING_36__)
+__SET_TO__(move)   __CAST_TO__(move, int)
+__END__
+__RETURN__   __CAST_TO__(move, int)
+__END__
+__FUNCTION__  choose_random_move(board, moves)
+__DECLARE_AS__(possible_moves)   __EMPTY_ARRAY__
+__FOR__  move  __IN__  moves  __DO__
+__IF__  is_open_space(board, move)  __THEN__
+__INSERT_IN__(move, possible_moves)
+__END__
+__END__
+__IF__   __LENGTH_OF__(possible_moves)   __NOT_EQUAL_TO__  0  __THEN__
+__RETURN__  __RANDOM_CHOICE__(possible_moves)
+__ELSE__
+__RETURN__   __NULL__
+__END__
+__END__
+__FUNCTION__  get_computer_move(board, computer_letter)
+__IF__  computer_letter  __EQUAL_TO__  __AUTO_STRING_37__  __THEN__
+__DECLARE_AS__(player_letter)  __AUTO_STRING_38__
+__ELSE__
+__DECLARE_AS__(player_letter)  __AUTO_STRING_39__
+__END__
+__FOR__   __DECLARE_AS__(i)  1; i  __LESS_THAN__  10;  __INCREMENT__(i)   __DO__
+__DECLARE_AS__(copy)  get_board_copy(board)
+__IF__  is_open_space(copy, i)  __THEN__
+make_move(copy, computer_letter, i)
+__IF__  is_winner(copy, computer_letter)  __THEN__
+__RETURN__  i
+__END__
+__END__
+__END__
+__FOR__   __DECLARE_AS__(i)  1; i  __LESS_THAN__  10;  __INCREMENT__(i)   __DO__
+__SET_TO__(copy)  get_board_copy(board)
+__IF__  is_open_space(copy, i)  __THEN__
+make_move(copy, player_letter, i)
+__IF__  is_winner(copy, player_letter)  __THEN__
+__RETURN__  i
+__END__
+__END__
+__END__
+__DECLARE_AS__(corners)  [1, 3, 7, 9]
+__DECLARE_AS__(move)  choose_random_move(board, corners)
+__IF__  move  __NOT_EQUAL_TO__   __NULL__   __THEN__
+__RETURN__  move
+__END__
+__IF__  is_open_space(board, 5)  __THEN__
+__RETURN__  5
+__END__
+__DECLARE_AS__(sides)  [2, 4, 6, 8]
+__RETURN__  choose_random_move(board, sides)
+__END__
+__FUNCTION__  is_board_full(board)
+__FOR__   __DECLARE_AS__(i)  0; i  __LESS_THAN__  10;  __INCREMENT__(i)   __DO__
+__IF__  is_open_space(board, i)  __THEN__
+__RETURN__   __FALSE__
+__END__
+__END__
+__RETURN__   __TRUE__
+__END__
+__FUNCTION__  main()
+__PRINT__(__AUTO_STRING_40__)
+__WHILE__   __TRUE__   __DO__
+__DECLARE_AS__(the_board)   __EMPTY_ARRAY__
+__SET_TO__(the_board)  __ARRAYS_FILL__(10, __AUTO_STRING_41__)
+__DECLARE_AS__(letters)  input_player_letter()
+__DECLARE_AS__(player_letter)   __ELEMENT_AT_FROM__(0, letters)
+__DECLARE_AS__(computer_letter)   __ELEMENT_AT_FROM__(1, letters)
+__DECLARE_AS__(turn)  who_goes_first()
+__PRINT__( __CONCATENATE__(__AUTO_STRING_42__, __CONCATENATE__(turn, __AUTO_STRING_43__) ))
+__DECLARE_AS__(game_playing)   __TRUE__
+__WHILE__  game_playing  __DO__
+__IF__  turn  __EQUAL_TO__  __AUTO_STRING_44__  __THEN__
+draw_board(the_board)
+__SET_TO__(move)  get_player_move(the_board)
+make_move(the_board, player_letter, move)
+__IF__  is_winner(the_board, player_letter)  __THEN__
+draw_board(the_board)
+__PRINT__(__AUTO_STRING_45__)
+__SET_TO__(game_playing)   __FALSE__
+__ELSE__
+__IF__  is_board_full(the_board)  __THEN__
+draw_board(the_board)
+__PRINT__(__AUTO_STRING_46__)
+__BREAK__
+__ELSE__
+__SET_TO__(turn)  __AUTO_STRING_47__
+__END__
+__END__
+__ELSE__
+__SET_TO__(move)  get_computer_move(the_board, computer_letter)
+make_move(the_board, computer_letter, move)
+__IF__  is_winner(the_board, computer_letter)  __THEN__
+draw_board(the_board)
+__PRINT__(__AUTO_STRING_48__)
+game_playing =  __FALSE__
+__ELSE__
+__IF__  is_board_full(the_board)  __THEN__
+draw_board(the_board)
+__PRINT__(__AUTO_STRING_49__)
+__BREAK__
+__ELSE__
+__SET_TO__(turn)  __AUTO_STRING_50__
+__END__
+__END__
+__END__
+__END__
+__IF__   __NOT__  play_again()  __THEN__
+__BREAK__
+__END__
+__END__
+__END__
+__FUNCTION__  __RANDOM_RANDINT__(rmin, rmax)
+__DECLARE_AS__(rnd)  ( __RANDOM_RANDOM__()   __TIMES__  rmax )  __PLUS__  rmin
+__RETURN__  __MATH_FLOOR_OF__(rnd)
+__END__
+__FUNCTION__  __RANDOM_CHOICE__(sequence)
+__IF__  sequence  __IDENTICAL_TO__   __NULL__   __THEN__
+__RETURN__   __NULL__
+__END__
+__SET_TO__(n)   __LENGTH_OF__(sequence)
+__IF__  n  __EQUAL_TO__  0  __THEN__
+__RETURN__   __NULL__
+__END__
+__RETURN__   __ELEMENT_AT_FROM__(__RANDOM_RANDINT__(0, n), sequence)
+__END__
+__FUNCTION__  __ARRAYS_FILL__(num, value)
+__IF__  num  __LESS_THAN__  1  __THEN__
+__RETURN__   __EMPTY_ARRAY__
+__END__
+__SET_TO__(result)   __EMPTY_ARRAY__
+__FOR__  i = 0; i  __LESS_THAN__  num;  __INCREMENT__(i)   __DO__
+__INSERT_IN__(value, result)
+__END__
+__RETURN__  result
+__END__

@@ -1,0 +1,1 @@
+__DECLARE_AS__(elem) __ELEMENT_AT_FROM__(2, 3, 4, arr)

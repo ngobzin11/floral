@@ -1,0 +1,34 @@
+// Bitap Algorithm a.k.a. Baeza-Yates-Gonnet Algorithm is an approximate string matching algorithm. 
+function bitap_search(haystack, needle) 
+	declare m as length of needle
+
+	if m equal to 0 then
+		return haystack
+	end
+
+	// Initialize the bit array R
+	declare R as empty array
+
+	// Make every value in R 0 except for the first one
+	insert 1 in R
+	loop i up from 1 to m plus 1
+		insert 0 in R
+	end
+
+	// 
+	loop i to length of haystack
+		// Update the bit array
+		loop k down from m to 0 by k
+			declare p_k as element at [ k minus 1 ] from needle
+			declare t_i as element at i from haystack
+			declare R_k1 as element at [ k minus 1 ] from R
+			set [ element at k from R ] to R_k1 bitwise and (t_i equal to p_k)
+		end
+
+		if element at m from R equal to 1 then
+			return 
+		end
+	end
+
+	return -1
+end

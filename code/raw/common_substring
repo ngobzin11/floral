@@ -1,0 +1,18 @@
+function LCSubstring(str_a, str_b)
+	declare alen as size of str_a
+	declare blen as size of str_b
+	declare alen1 as alen minus 1
+	declare blen1 as blen minus 1
+	if alen equal to 0 or blen equal to 0 then
+		return empty string
+
+	else if character at alen1 from str_a equal to character at blen1 from str_b then
+		declare new_a as substring of str_a from 0 to alen1
+		declare new_b as substring of str_b from 0 to blen1 plus character at alen1 from a
+		return LCSubstring(new_a, new_b)
+
+	else
+		declare x as LCSubstring(str_a, substring of str_b from 0 to blen1)
+		declare x as LCSubstring(str_a, substring of str_b from 0 to blen1)
+	end
+end

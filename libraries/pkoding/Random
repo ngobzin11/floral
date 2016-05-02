@@ -1,0 +1,89 @@
+/**
+ * @regex unit interval
+ * @argorder {}
+ * @tags random float, random float between, random, random unit interval
+ */
+native function random_random()
+
+
+/**
+ * @regex integer between [integer] and [integer]
+ * @argorder {1, 2}
+ * @tags random int, random integer, random integer between, randint, rand int
+ * @dependencies pkoding.Math
+ * @param [integer] <Integer> - The lower limit (inclusive)
+ * @param [integer] <Integer> - The upper limit (non-inclusive)
+ */
+function random_randint(rmin, rmax)
+	declare rnd as ( random unit interval times rmax ) plus rmin
+	return math floor rnd
+end
+
+
+/**
+ * @regex sample <size >[integer] from [array]
+ * @argorder {2, 1}
+ * @tags random sample, sample population
+ * @dependencies pkoding.Arrays
+ * @param [inteter] <Integer> - Sample size
+ * @param [array] <Array> - Population to sample from
+ */
+function random_sample(population, sample_size) 
+	if population identical to null or sample_size less than 0 then
+		return population
+	end
+	set p_size to length of population
+	if p_size equal to 0 or sample_size greater than p_size then
+		return population
+	end
+	// We don't want to change the order of the population
+	set arr_copy to arrays copy population
+	random shuffle arr_copy
+	return arrays slice arr_copy from 0 to sample_size
+end
+
+
+/**
+ * @regex shuffle [array]
+ * @argorder {1}
+ * @dependencies pkoding.Arrays
+ * @tags shuffle array, randomize array, scramble array
+ * @params [array] <Array> - The array / list you are trying to shuffle
+ */
+function random_shuffle(pieces) 
+	// This implements the Fisher-Yates shuffle algorithm 
+	if pieces identical to null then
+		return pieces
+	end
+	set cur_index to length of pieces
+	if cur_index equal to 0 then
+		return empty array
+	end
+	set rand_index to -1
+	
+	while cur_index not identical to 0 do
+		set rand_index to random integer between 0 and cur_index
+		decrement cur_index
+		
+		set pieces to arrays swap cur_index with rand_index in pieces
+	end
+end
+
+
+/**
+ * @regex choice <from >[array]
+ * @argorder {1}
+ * @tags random choice, random choice from
+ * @param [array] <Array> - The sequence from which the choice is being made
+ */
+function random_choice(sequence) 
+	// Python would otherwise throw an IndexError Exception
+	if sequence identical to null then
+		return null
+	end
+	set n to length of sequence
+	if n equal to 0 then
+		return null
+	end
+	return element at [ random integer between 0 and n ] from sequence
+end

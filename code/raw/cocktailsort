@@ -1,0 +1,32 @@
+#Libraries.pkoding.Arrays
+
+function cocktailsort(A)
+	declare swapped as true
+	declare n as length of A minus 2
+	while swapped do
+		loop i to n
+			declare a as element at i from A
+			declare b as element at i plus 1 from A
+			if a greater than b then
+				declare m as i plus 1
+				set A to arrays swap i with m in A
+				set swapped to true
+			end
+		end
+
+		// If the swap didn't happen
+		if not swapped then
+			break
+		end
+		set swapped to false
+		loop i down from n to 0
+			declare a as element at i from A
+			declare b as element at i plus 1 from A
+			if a greater than b then
+				declare m as i plus 1
+				set A to arrays swap i with m in A
+				set swapped to true
+			end
+		end
+	end
+end

@@ -1,0 +1,44 @@
+#Libraries.pkoding.Arrays
+
+// Warshall:
+//	Implements Warshall's algorithm for computing the transitive closure
+//	Input: The adjacency matrix A of a digraph with n veritices
+//	Output: The transitive closure of the graph
+function warshall(A)
+	declare n as length of A
+	declare prevR as arrays copy A
+	declare R as empty array
+
+	// Fill R with 0's
+	loop i to n
+		set R_i to empty array
+		loop j to n
+			insert 0 in R_i
+		end
+		insert R_i in R
+	end
+
+	// Now the actual algorithm
+	loop k to n
+		declare prev_k as element at k from prevR
+		loop i to n
+			declare prev_i as element at i from prevR
+			declare prev_ik as element at k from prev_i
+			declare cur_i as element at i from R
+			loop j to n
+				declare prev_ij as element at j from prev_i
+				declare prev_kj as element at j from prev_k
+				if prev_ij equal to 1 then
+					set [ element at j from cur_i ] to 1
+					
+				else if prev_ik equal to 1 and prev_kj equal to 1 then
+					set [ element at j from cur_i ] to 1
+				end
+			end
+			set [ element at i from R ] to cur_i
+		end
+		set prevR to arrays copy R
+	end
+	
+	return R
+end

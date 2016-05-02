@@ -1,0 +1,26 @@
+#Libraries.pkoding.Arrays
+
+// Floyd:
+//	Implements Floyd's algorithm for the all-pairs shortest-paths problem
+//	Input: The weight matrix W of a graph with no negative-length cycle
+//	Output: The distance matrix of the shortest paths' lengths
+function floyd(W)
+	declare n as length of W
+	declare D as arrays copy W
+	
+	loop k to n
+		declare D_k as element at k from D
+		loop i to n
+			declare D_i as element at i from D
+			declare D_ik as element at k from D_i
+			loop j to n
+				declare sm as D_ik plus element at j from D_k
+				if sm less than element at j from D_i then
+					set [ element at j from D_i ] to sm
+				end
+			end
+			set [ element at i from D ] to D_i
+		end
+	end
+	return D
+end

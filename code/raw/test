@@ -1,0 +1,11 @@
+//#Modes.pkoding.test
+//#Libraries.pkoding.Strings
+
+class Test
+
+	// private 
+	function add()
+		print "This is just a random string"
+	end
+	
+end

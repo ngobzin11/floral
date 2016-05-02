@@ -1,0 +1,28 @@
+#Libraries.pkoding.Arrays
+
+function combsort(A)
+	declare gap as length of A
+	declare swapped as false
+	declare shrink as 1.3
+
+	while gap not equal to 1 and swapped equal to false do
+		set gap to gap over shrink
+		if gap less than 1 then
+			set gap to 1
+		end
+
+		declare i as 0
+		set swapped to false
+
+		while i plus gap greater than length of A do
+			declare m as i plus gap
+			declare a as element at i from A
+			declare b as element at m from A
+			if a greater than b then
+				set A to arrays swap i with m in A
+				set swapped to true
+			end
+			increment i
+		end
+	end
+end

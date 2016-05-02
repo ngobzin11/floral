@@ -1,0 +1,6 @@
+__ARRAYS_CONTAINS__							%2$s.indexOf(%1$s) != -1
+__ARRAYS_MERGE__							%s.concat(%s)
+__ARRAYS_SLICE_FROM__						%s.slice(%s)
+__ARRAYS_SLICE_FROM_TO__					%s.slice(%s, %s)
+__ARRAYS_REVERSE_SORT__						%s.sort().reverse()
+__ARRAYS_REVERSE__							%s.reverse()

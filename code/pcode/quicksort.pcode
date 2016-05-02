@@ -1,0 +1,26 @@
+__FUNCTION__  quicksort(arr)
+__IF__  arr  __IDENTICAL_TO__   __NULL__   __THEN__
+__RETURN__  arr
+__END__
+__DECLARE_AS__(n)   __LENGTH_OF__(arr)
+__DECLARE_AS__(small)   __EMPTY_ARRAY__
+__DECLARE_AS__(eql)   __EMPTY_ARRAY__
+__DECLARE_AS__(big)   __EMPTY_ARRAY__
+__IF__  n  __GREATER_THAN__  1  __THEN__
+__DECLARE_AS__(pivot)   __ELEMENT_AT_FROM__(0, arr)
+__FOR__  elem  __IN__  arr  __DO__
+__IF__  elem  __LESS_THAN__  pivot  __THEN__
+__INSERT_IN__(elem, small)
+__ELSE_IF__  elem  __GREATER_THAN__  pivot  __THEN__
+__INSERT_IN__(elem, big)
+__ELSE__
+__INSERT_IN__(elem, eql)
+__END__
+__END__
+__SET_TO__(small)  quicksort(small)
+__SET_TO__(big)  quicksort(big)
+__SET_TO__(arr)  __ARRAYS_MERGE__(big, eql)
+__SET_TO__(arr)  __ARRAYS_MERGE__(arr, small)
+__END__
+__RETURN__  arr
+__END__
